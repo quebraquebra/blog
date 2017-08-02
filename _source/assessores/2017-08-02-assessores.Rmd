@@ -36,7 +36,7 @@ qtde_assessores =  arrange(qtde_assessores,desc(TOTAL))
 
 ```
 
-Além de salários e benefícios generosos, nossos senadores ainda podem contar com uma equipe de assessores. Até aí tudo bem, afinal é importante que haja auxílio administrativo para que nossos parlamentares possam se concentrar nas tarefas mais importantes. O problema é quando o número de assessores é grande e desafia o bom senso. Abaixo mostramos o número de assessores por Senador. Como assessores consideramos: efetivos, comissionados, terceirizados, estagiários e escritório de apoio. Em todos os casos o maior número de assessores é de comissionados.
+Além de salários e benefícios generosos, nossos senadores ainda podem contar com uma quantidade generosa de assessores. Até aí tudo bem, afinal é importante que haja auxílio administrativo para que nossos parlamentares possam se concentrar nas tarefas mais importantes. O problema é quando o número de assessores é grande e desafia o bom senso. Abaixo mostramos o número de assessores por Senador. Como assessores consideramos: efetivos, comissionados, terceirizados, estagiários e escritório de apoio. Em todos os casos o maior número de assessores é de comissionados.
 
 
 ```{r assessores}
@@ -90,7 +90,7 @@ colnames(top3_senadores) = c("Senador", "Efetivos", "Comissionados", "Esc. Apoio
 
 ```
 
-Na tabela abaixo mostramos o custo em 2016 dos top-3 senadores com maior número de assessores considerando somente: comissionados, efetivos e escritório de apoio. O custo total somado desses três senadores em 2016 só em assessores foi de quase R$ `r round(custo_total/10^6, 1)` milhões. 
+Na tabela abaixo mostramos o custo em 2016 dos top-3 senadores em termos do número de assessores considerando somente comissionados, efetivos e escritório de apoio. O custo total somado desses três senadores em 2016 só em assessores foi de R$ `r round(custo_total/10^6, 1)` milhões. 
 
 ```{r,echo=FALSE}
 datatable(top3_senadores,options = list(paging=F,info=F,searching=F),rownames=FALSE)
