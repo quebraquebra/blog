@@ -6,7 +6,7 @@ tags: [htmlwidgets, r]
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE,message=FALSE, warning=FALSE, fig.cap = "")
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE,message=FALSE, cache=FALSE,warning=FALSE, fig.cap = "")
 library(highcharter)
 library(readr)
 library(dplyr)
@@ -95,6 +95,7 @@ Na tabela abaixo mostramos o custo em 2016 dos top-3 senadores em termos do núm
 ```{r,echo=FALSE}
 datatable(top3_senadores,options = list(paging=F,info=F,searching=F),rownames=FALSE)
 ```
+<br/>
 
 Na tabela abaixo mostramos as maiores remunerações recebidas  em um certo mês para assessores de cada um dos senadores na tabela acima.
 

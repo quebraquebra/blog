@@ -98,7 +98,7 @@ hc_yAxis(title = list(text = "R$"))
 hc
 ```
 
-No gráfico abaixo vemos quantas vezes mais cada especialidade no Senado ganhou em relação ao salário médio de cada especialidade no resto do Brasil. Veja que um Segurança no Senado ganhou, por exemplo, 16 vezes mais que o salário médio de profissionais de Segurança no resto do Brasil em 2016.
+No gráfico abaixo vemos quantas vezes mais cada especialidade no Senado ganhou em relação ao salário médio de cada especialidade no resto do Brasil. Veja que a especialidade Segurança no Senado ganhou, por exemplo, 16 vezes mais que o salário médio de profissionais de Segurança no resto do Brasil em 2016.
 
 
 ```{r diferença}
