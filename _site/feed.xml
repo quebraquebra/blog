@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>QuebraQuebra</title>
     <description></description>
-    <link>http://yourdomain.com/knitr-jekyll/</link>
-    <atom:link href="http://yourdomain.com/knitr-jekyll/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 02 Aug 2017 10:50:51 -0300</pubDate>
-    <lastBuildDate>Wed, 02 Aug 2017 10:50:51 -0300</lastBuildDate>
+    <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/</link>
+    <atom:link href="http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 02 Aug 2017 10:57:38 -0300</pubDate>
+    <lastBuildDate>Wed, 02 Aug 2017 10:57:38 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -34,8 +34,8 @@
 
 </description>
         <pubDate>Wed, 02 Aug 2017 00:00:00 -0300</pubDate>
-        <link>http://yourdomain.com/knitr-jekyll/2017/08/assessores.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/knitr-jekyll/2017/08/assessores.html</guid>
+        <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/assessores.html</link>
+        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/assessores.html</guid>
         
         <category>htmlwidgets</category>
         
@@ -101,8 +101,8 @@
 
 </description>
         <pubDate>Tue, 01 Aug 2017 00:00:00 -0300</pubDate>
-        <link>http://yourdomain.com/knitr-jekyll/2017/08/publico-privado.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/knitr-jekyll/2017/08/publico-privado.html</guid>
+        <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/publico-privado.html</link>
+        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/publico-privado.html</guid>
         
         <category>htmlwidgets</category>
         
