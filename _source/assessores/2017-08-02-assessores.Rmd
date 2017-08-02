@@ -36,7 +36,7 @@ qtde_assessores =  arrange(qtde_assessores,desc(TOTAL))
 
 ```
 
-Além de salários e benefícios generosos, nossos senadores ainda podem contar com uma quantidade generosa de assessores. Até aí tudo bem, afinal é importante que haja auxílio administrativo para que nossos parlamentares possam se concentrar nas tarefas mais importantes. O problema é quando o número de assessores é grande e desafia o bom senso. Abaixo mostramos o número de assessores por Senador. Como assessores consideramos: efetivos, comissionados, terceirizados, estagiários e escritório de apoio. Em todos os casos o maior número de assessores é de comissionados.
+Além de salários e benefícios generosos, nossos senadores ainda podem contar com uma quantidade generosa de assessores. Até aí tudo bem, afinal é importante que haja auxílio administrativo para que nossos parlamentares possam se concentrar nas tarefas mais importantes. O problema é quando o número de assessores é grande e desafia o bom senso. Na atual legislatura, cada senador conta com `r round(mean(qtde_assessores$TOTAL),0)` assessores em média. Abaixo mostramos o número exato de assessores por senador na atual legislatura. Como assessores consideramos: efetivos, comissionados, terceirizados, estagiários e escritório de apoio. Em todos os casos o maior número de assessores é de comissionados.
 
 
 ```{r assessores}
