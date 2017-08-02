@@ -1,0 +1,115 @@
+---
+layout: post
+title:  Assessores para dar e vender
+published: true
+tags: [htmlwidgets, r]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE,message=FALSE, warning=FALSE, fig.cap = "")
+library(highcharter)
+library(readr)
+library(dplyr)
+library(reshape2)
+library(DT)
+```
+
+```{r carregando_dados,include=FALSE}
+
+data_filename = "~/Documents/quebra-quebra/senado_federal/dados/dados_senado.csv"
+data <- read_csv(file=data_filename)
+colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
+
+data <- mutate(data, remuneracao_total=remuneracao_basica + vantagens_pessoais + funcao_comissao + gratificacao_natalina + horas_extras + outras_remuneracoes + adicional_periculosidade + adicional_noturno + abono_permanencia + reversao + imposto_de_renda + psss + faltas + diarias + auxilios + auxilio_alimentacao + vantagens_indenizatorias + adicional_ferias + ferias_indenizatorias + licenca_premio)
+data <- mutate(data, remuneracao_total_s=remuneracao_basica_s + vantagens_pessoais_s + funcao_comissao_s + gratificacao_natalina_s + horas_extras_s + outras_remuneracoes_s + adicional_periculosidade_s + adicional_noturno_s + abono_permanencia_s + reversao_s + imposto_de_renda_s + psss_s + faltas_s + diarias_s + auxilios_s + auxilio_alimentacao_s + vantagens_indenizatorias_s + adicional_ferias_s + ferias_indenizatorias_s + licenca_premio_s)
+data <- mutate(data, remuneracao_total_liquida=remuneracao_total+remuneracao_total_s)
+
+
+#filtrando dados para 2016
+senado_2016 <- data[data$ano==2016,]
+```
+
+```{r assessores_2016}
+senado_2016 <- data[data$ano==2016,]
+qtde_assessores <- readr::read_csv(file="qtde_assessores.csv")
+qtde_assessores =  arrange(qtde_assessores,desc(TOTAL))
+
+```
+
+Além de salários e benefícios generosos, nossos senadores ainda podem contar com uma equipe de assessores. Até aí tudo bem, afinal é importante que haja auxílio administrativo para que nossos parlamentares possam se concentrar nas tarefas mais importantes. O problema é quando o número de assessores é grande e desafia o bom senso. Abaixo mostramos o número de assessores por Senador. Como assessores consideramos: efetivos, comissionados, terceirizados, estagiários e escritório de apoio. Em todos os casos o maior número de assessores é de comissionados.
+
+
+```{r assessores}
+
+#g <-ggplot(data=qtde_assessores, aes(x=SENADOR, y=TOTAL)) +
+#geom_bar(stat="identity", position=position_dodge(width=0.8), #width=0.8) +
+#theme_minimal() + theme(axis.text.x = element_text(angle = 90)) #+
+#       scale_x_discrete(breaks = qtde_assessores$SENADOR[c(T, rep(F, 3))], limits = qtde_assessores$SENADOR)
+#ggplotly(g)
+
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=qtde_assessores$SENADOR) %>%
+  hc_add_series(data=qtde_assessores$TOTAL,name="Num. Asessores")
+q
+
+```
+
+
+```{r top-3-assessores, include=FALSE}
+qtde_assessores <- readr::read_csv(file="qtde_assessores.csv")
+top3_senadores = qtde_assessores[c(1,2,3),c(1,2,3,6)]
+
+####################### Assessores João Alberto #######################
+assessores_ja <- readr::read_csv(file="assessores_joao_alberto.csv")
+assessores_ja = assessores_ja[[2]] 
+assessores_ja = filter(senado_2016, nome %in% assessores_ja) %>%
+  arrange(desc(remuneracao_total_liquida))
+soma_sal_ja = sum(assessores_ja$remuneracao_total_liquida)
+dist_sal_ja = summary(assessores_ja$remuneracao_total_liquida)
+####################### Assessores João Alberto #######################
+assessores_col <- readr::read_csv(file="assessores_collor.csv")
+assessores_col = assessores_col[[2]] 
+num_assessores_col = length(assessores_col)
+num_assessores_col
+assessores_col = filter(senado_2016, nome %in% assessores_col) %>%
+  arrange(desc(remuneracao_total_liquida))
+soma_sal_col = sum(assessores_col$remuneracao_total_liquida)
+dist_sal_col = summary(assessores_col$remuneracao_total_liquida)
+####################### Assessores Hélio José #######################
+assessores_he <- readr::read_csv(file="assessores_helio_jose.csv")
+assessores_he = assessores_he[[2]] 
+assessores_he = filter(senado_2016, nome %in% assessores_he) %>%  arrange(desc(remuneracao_total_liquida))
+soma_sal_he = sum(assessores_he$remuneracao_total_liquida)
+dist_sal_he = summary(assessores_he$remuneracao_total_liquida)
+custo_total = soma_sal_ja + soma_sal_col + soma_sal_he
+custo_assessores_2016 = c(soma_sal_ja,soma_sal_col,soma_sal_he) %>% format(big.mark='.')
+media_assessores_2016 = c(dist_sal_ja[4],dist_sal_col[4],dist_sal_he[4])
+top3_senadores = mutate(top3_senadores,Custo=custo_assessores_2016)
+colnames(top3_senadores) = c("Senador", "Efetivos", "Comissionados", "Esc. Apoio", "Custo (R$)")
+
+```
+
+Na tabela abaixo mostramos o custo em 2016 dos top-3 senadores com maior número de assessores considerando somente: comissionados, efetivos e escritório de apoio. O custo total somado desses três senadores em 2016 só em assessores foi de quase R$ `r round(custo_total/10^6, 1)` milhões. 
+
+```{r,echo=FALSE}
+datatable(top3_senadores,options = list(paging=F,info=F,searching=F),rownames=FALSE)
+```
+
+Na tabela abaixo mostramos as maiores remunerações recebidas  em um certo mês para assessores de cada um dos senadores na tabela acima.
+
+```{r,echo=FALSE}
+top1_ja = assessores_ja[1,c(2,3,55)]
+top1_col = assessores_col[1,c(2,3,55)]
+top1_he = assessores_he[1,c(2,3,55)]
+top3_assessores = rbind(top1_ja,top1_col) 
+top3_assessores = rbind(top3_assessores,top1_he) 
+top3_assessores = cbind(top3_senadores[1],top3_assessores)
+top3_assessores[,4] = format(top3_assessores[,4],big.mark = '.',decimal.mark = ',')
+colnames(top3_assessores) = c("Senador","Assessor","Vínculo","Remuneração (R$)")
+```
+
+```{r,echo=FALSE}
+datatable(top3_assessores,options = list(paging=F,info=F,searching=F),rownames=FALSE)
+```
+
