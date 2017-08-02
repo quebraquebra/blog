@@ -47,6 +47,7 @@ Além de salários e benefícios generosos, nossos senadores ainda podem contar 
 #       scale_x_discrete(breaks = qtde_assessores$SENADOR[c(T, rep(F, 3))], limits = qtde_assessores$SENADOR)
 #ggplotly(g)
 
+
 q = highchart() %>%
   hc_chart(type="column") %>%
   hc_xAxis(categories=qtde_assessores$SENADOR) %>%

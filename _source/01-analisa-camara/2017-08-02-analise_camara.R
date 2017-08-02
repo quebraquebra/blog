@@ -1,0 +1,153 @@
+library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
+library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
+
+data_filename = "_data/camara_dados.txt"
+data <- read.csv2(file=data_filename, sep=",", header=FALSE, stringsAsFactors=FALSE, na.strings="unknown", dec=".", encoding = "UTF-8")
+colnames(data) <-  c("mes","ano","cargo","vinculo","nome","remuneracao_fixa","vantagens_pessoais","remuneracao_eventual","abono_permanencia","descontos","diarias","outros_auxilios","outras_vantagens")
+
+data <- mutate(data, remuneracao_total=remuneracao_fixa+vantagens_pessoais+remuneracao_eventual+abono_permanencia-descontos+diarias+outros_auxilios+outras_vantagens)
+
+ano_max <- max(data$ano)
+ano_min <- min(data$ano)
+
+#cor_do_site = "#2c3e50" #azul
+#cor_do_site = "#99fdd9" #verde
+cor_do_site = "primary"
+
+#options(scipen=999, OutDec= ",")
+
+topSalarios <- function(salariosAgregados, column_ref, keeps, size) {
+  topSalarios <- salariosAgregados[order(column_ref, decreasing=TRUE)[1:size],]
+  rownames(topSalarios) <- NULL
+  colnames(topSalarios) <- keeps
+  return(topSalarios)
+}
+
+keeps <- c("Nome","Cargo","Vnculo","Mês","Ano","Remuneração Total (R$)")
+salariosAgregados <- aggregate(remuneracao_total~nome+cargo+vinculo+mes+ano, FUN=sum, data)
+top_servidores_todos <- topSalarios(salariosAgregados, salariosAgregados$remuneracao_total, keeps, 10)
+
+todos_servidores_recente <- data[data$ano==ano_max,]
+
+gasto_de_referencia <- sum(top_servidores_todos$`Remuneração Total (R$)`)
+
+todos_deputados <- filter(data, grepl("DEPUTADO", cargo))
+todos_deputados_recente <- todos_deputados[todos_deputados$ano==ano_max,]
+
+remuneracao_total <- sum(data$remuneracao_total)
+remuneracao_recente <- sum(todos_servidores_recente$remuneracao_total)
+remuneracao_deputados <- sum(todos_deputados$remuneracao_total)
+remuneracao_deputados_recente <- sum(todos_deputados_recente$remuneracao_total)
+
+keeps <- c("Nome","Mês","Ano","Remuneração Total (R$)")
+salariosAgregados <- aggregate(remuneracao_total~nome+mes+ano, FUN=sum, todos_deputados)
+top_deputados_todos <- topSalarios(salariosAgregados, salariosAgregados$remuneracao_total, keeps, 10)
+
+salariosAgregados <- aggregate(remuneracao_total~nome+mes+ano, FUN=sum, todos_deputados_recente)
+top_deputados_recente <- topSalarios(salariosAgregados, salariosAgregados$remuneracao_total, keeps, 10)
+
+teto_constitucional <- 37476.93
+
+## Gastos da Câmara com a Remuneração dos Servidores
+
+#Considerando todos os servidores da Câmara, no período de `r ano_min` a `r ano_max`, o site da transparência disponibiliza o pagamento para `r round(nrow(data)/10^3, 0)` mil servidores, o equivalente à R$ `r round(sum(data$remuneracao_total)/(10^9), 1)` BILHÕES. Só deputados são `r round(nrow(todos_deputados)/10^3, 0)` mil na folha de pagamento, correspondendo à `r round(nrow(todos_deputados)/nrow(data)*100, 1)`% do total nesse intervalo de tempo. Mas, ao observarmos o momentante pago aos deputados, percebe-se que eles corresponde à R$ `r round(remuneracao_deputados/(10^6), 0)` MILHÕES em pagamentos, ou seja, `r round(remuneracao_deputados/remuneracao_total*100, 1)`% do total. Só em `r ano_max`, `r round(nrow(todos_servidores_recente)/10^3, 1)` mil servidores já foram pagos pela Câmara, sendo `r round(nrow(todos_deputados_recente)/10^3, 1)` mil desputados, ou `r round(nrow(todos_deputados_recente)/nrow(todos_servidores_recente)*100, 1)`% do total. Em outras palavras, foi pago R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES em remuneração dos servidores, sendo R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES destinados aos deputados (`r round(remuneracao_deputados_recente/remuneracao_recente*100, 1)`% do total).
+
+# **Maiores remunerações da Câmara**
+
+# Os dez servidores que receberam as mais elevadas remunerações, no período de `r ano_min` e `r ano_max`, são apresentados na tabela seguinte. Totalizando R$ `r round(gasto_de_referencia/10^3, 0)` mil, entende-se por remuneração total a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens. Na tabela, é apresentado o nome completo do servidor, o seu respectivo cargo, o seu vínculo, o mês e o ano de referência do pagamento, assim como a remuneração total.
+
+#kable(top_servidores_todos)
+datatable(top_servidores_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE)
+
+# Deputados mais Remunerados
+
+remuneracao_top_deputados <- sum(top_deputados_todos$`Remuneração Total (R$)`)
+remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração Total (R$)`)
+
+#* **Quais deputados mais remunerados em um só mês?**
+
+#Entre os anos de `r ano_min` e `r ano_max`, `r round(nrow(todos_deputados)/10^3, 1)` mil deputados foram pagos. Na tabela seguinte, nós destacamos quais dez deputados mais remunerados nesse período, que receberam `r round(remuneracao_top_deputados/10^3, 1)` mil. A remuneração Total corresponde a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens.
+
+#kable(top_deputados_todos)
+datatable(top_deputados_todos, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+
+#* **Quais deputados mais remunerados em um só mês de 2017?**
+
+#Seguindo o mesmo cálculo da remuneração total, apresentamos quais dez deputados mais receberam em `r ano_max`, correspondendo à R$ `r round(remuneracao_top_deputados_recentes/10^3, 1)` mil no total. Nesse mesmo ano, `r round(nrow(todos_deputados_recente)/10^3, 1)` mil deputados foram pagos, sendo um total R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES
+
+#kable(top_deputados_recente)
+datatable(top_deputados_recente, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+
+cor_do_site = "#2c3e50" #azul
+
+deputados_acima_teto <- todos_deputados[todos_deputados_recente$remuneracao_total > teto_constitucional, ]
+deputados_acima_teto_recente <- todos_deputados_recente[todos_deputados_recente$remuneracao_total > teto_constitucional, ]
+
+servidores_acima_teto <- data[data$remuneracao_total > teto_constitucional, ]
+
+#* **Quem são os deputados que mais ultrapassaram o teto?**
+
+#O teto constitucional definido pelo STF é de R$ `r teto_constitucional`, entretanto, existem `r nrow(deputados_acima_teto)` servidores que já receberam acima desse valor, em `r ano_max` foram `r nrow(deputados_acima_teto_recente)` servidores. O gráfico seguinte mostra quantas vezes os deputados que ultrapassaram o teto, receberam acima disso em `r ano_max` considerando a remuneração total líquida, ou seja, após os descontos dos impostos.
+
+title <- paste("Deputados que Ultrapassaram o Teto em ", ano_max)
+dados_grafico <- deputados_acima_teto_recente[,c("nome","remuneracao_total")]
+dados_grafico$remuneracao_total <- 1
+dados_grafico <- aggregate(remuneracao_total~nome, sum, data=dados_grafico)
+dados_grafico <- dados_grafico[order(dados_grafico$remuneracao_total, decreasing=TRUE),]
+
+grafico_deputados_recentes <- ggplot(dados_grafico, aes(x=nome, remuneracao_total)) +
+  geom_bar(stat = "identity", fill=cor_do_site) + coord_flip() +
+  labs(y="Quantidade de vezes", x="nome", title=title) +
+  theme_light()
+ggplotly(grafico_deputados_recentes)
+
+
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=dados_grafico$nome) %>%
+  hc_add_series(data=dados_grafico$remuneracao_total, name="Meses acima do teto")
+q
+
+
+
+
+
+
+#* **Quem são os servidores que mais ultrapassaram o teto?**
+
+#  Entretanto, existem servidores que receberam ainda mais vezes acima do teto constitucional. No gráfico seguinte, mostra-se os dez servidores que mais receberam acima do teto constitucional entre os anos `r ano_min` e `r ano_max`.
+
+title2 <- paste("Servidores que mais Ultrapassaram o Teto entre", ano_min, "e", ano_max)
+dados_grafico2 <- servidores_acima_teto[,c("nome","remuneracao_total", "cargo")]
+dados_grafico2$remuneracao_total <- 1
+dados_grafico2 <- aggregate(remuneracao_total~nome+cargo, sum, data=dados_grafico2)
+dados_grafico2 <- dados_grafico2[order(dados_grafico2$remuneracao_total, decreasing=TRUE)[1:10],]
+
+grafico_servidores <- ggplot(dados_grafico2, aes(x=nome, remuneracao_total, fill=cargo)) +
+  geom_bar(stat = "identity") + coord_flip() +
+  labs(y="Quantidade de vezes", x="", title=title2) +
+  theme_light()
+
+ggplotly(grafico_servidores)
+
+
+
+hc <- hchart(dados_grafico2, type = "column", hcaes(x = nome, y = remuneracao_total, group = cargo)) %>%
+  hc_xAxis(title = list(text = "Nome do Servidor")) %>%
+  hc_yAxis(title = list(text = "Meses que ultrapassou o teto"))
+hc
+
+#Fonte:
+
+#[Para STF, servidores podem superar teto com acúmulo de cargo](http://www1.folha.uol.com.br/poder/2017/04/1879189-para-stf-servidores-podem-superar-teto-com-acumulo-de-cargo.shtml)
