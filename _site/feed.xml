@@ -3,10 +3,10 @@
   <channel>
     <title>QuebraQuebra</title>
     <description></description>
-    <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/</link>
-    <atom:link href="http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 02 Aug 2017 11:18:29 -0300</pubDate>
-    <lastBuildDate>Wed, 02 Aug 2017 11:18:29 -0300</lastBuildDate>
+    <link>http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/</link>
+    <atom:link href="http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 02 Aug 2017 12:49:28 -0300</pubDate>
+    <lastBuildDate>Wed, 02 Aug 2017 12:49:28 -0300</lastBuildDate>
     <generator>Jekyll v3.4.3</generator>
     
       <item>
@@ -35,8 +35,8 @@
 
 </description>
         <pubDate>Wed, 02 Aug 2017 00:00:00 -0300</pubDate>
-        <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/assessores.html</link>
-        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/assessores.html</guid>
+        <link>http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/assessores.html</link>
+        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/assessores.html</guid>
         
         <category>htmlwidgets</category>
         
@@ -102,8 +102,8 @@
 
 </description>
         <pubDate>Tue, 01 Aug 2017 00:00:00 -0300</pubDate>
-        <link>http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/publico-privado.html</link>
-        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/knitr-jekyll/2017/08/publico-privado.html</guid>
+        <link>http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/publico-privado.html</link>
+        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/publico-privado.html</guid>
         
         <category>htmlwidgets</category>
         
