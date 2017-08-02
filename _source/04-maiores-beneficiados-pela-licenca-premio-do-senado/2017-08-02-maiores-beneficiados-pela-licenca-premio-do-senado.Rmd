@@ -1,0 +1,158 @@
+---
+layout: post
+title:  Maiores Beneficiados pela Licença-Prêmio no Senado
+published: true
+tags: [htmlwidgets, r]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
+library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
+library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
+```
+
+
+```{r pre_processing, include=FALSE}
+data_filename = "~/workspace/dados_senado.csv"
+
+#######################################################################################################
+#Por convensão, decidiu-se utilizar o formato de arquivo CSV, logo o separador sempre será a vírgula  #
+#######################################################################################################
+data <- read.csv2(file=data_filename, sep=",", header=FALSE, stringsAsFactors=FALSE, na.strings="unknown", dec=".")
+colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
+
+data <- mutate(data, remuneracao_total=remuneracao_basica + vantagens_pessoais + funcao_comissao + gratificacao_natalina + horas_extras + outras_remuneracoes + abono_permanencia + reversao + imposto_de_renda + psss + faltas + diarias + auxilios + vantagens_indenizatorias)
+data <- mutate(data, remuneracao_total_s=remuneracao_basica_s + vantagens_pessoais_s + funcao_comissao_s + gratificacao_natalina_s + horas_extras_s + outras_remuneracoes_s + abono_permanencia_s + reversao_s + imposto_de_renda_s + psss_s + faltas_s + diarias_s + auxilios_s + vantagens_indenizatorias_s)
+data <- mutate(data, remuneracao_total_liquida=remuneracao_total+remuneracao_total_s)
+
+ano_max <- max(data$ano)
+ano_min <- min(data$ano)
+
+options(scipen=999, OutDec= ",")
+
+senado_recente <- data[data$ano==ano_max,]
+
+remuneracao_total_liquida <- sum(data$remuneracao_total_liquida, na.rm=T)
+
+
+topSalarios <- function(salariosAgregados, column_ref, keeps, size) {
+  topSalarios <- salariosAgregados[order(column_ref, decreasing=TRUE)[1:size],]
+  rownames(topSalarios) <- NULL
+  colnames(topSalarios) <- keeps
+  return(topSalarios)
+}
+
+keeps <- c("Nome","Cargo","Especialidade","Situação","Mês","Ano","Ano de Admissão","Licença-Prêmio* (R$)")
+salariosAgregados <- aggregate(licenca_premio_s~nome+cargo+especialidade+situacao+mes+ano+ano_de_admissao, FUN=sum, data)
+top_servidores_licenca_premio <- topSalarios(salariosAgregados, salariosAgregados$licenca_premio_s, keeps, 10)
+
+gasto_de_referencia <- sum(top_servidores_licenca_premio$`Licença-Prêmio* (R$)`)
+
+```
+
+## Gastos do Senado
+
+Nós extraimos a folha de pagamento do Senado para um total de `r round(nrow(data)/10^3, 0)` mil empenhos de pagamento entre os anos de `r ano_min` e `r ano_max`. Desse total, só em `r ano_max` foram `r round(nrow(senado_recente)/10^3, 0)` mil pagamentos o que corresponde a `r  round(nrow(senado_recente)/nrow(data)*100,1)`% de todos os pagamentos nesse período.
+
+O total de gastos com a folha do Senado nesse período está na ordem de R$ `r round(remuneracao_total_liquida/10^9, 2)` bilhões de reais com uma média de R$ `r format(remuneracao_total_liquida/nrow(data), big.mark='.',decimal.mark=',',digits=2)` por servidor, já inclusos todos os descontos como o imposto de renda, Plano de Seguridade Social do Servidor Público (PSSS), reversão do teto constitucional e eventuais ausências.
+
+* **Como é calculada a remuneração dos servidores?**
+
+Para entender a remuneração dos servidores da folha do Senado é importante observar que cada servidor (ou a maioria deles) possui duas folhas de pagamento: a *normal* e a *suplementar*. Para cada folha de pagamento existem os seguintes campos de pagamento:
+
+- **Estrutura Remuneratória Básica**
+- **Vantagens Pessoais**
+- **Vantagens Eventuais**: Função Comissionada, Antecipação e Gratificação Natalina, Horas Extras e Outras Remunerações Eventuais/Provisórias.
+- **Abono de Permanência**
+- **Descontos Obrigatórios**: Reversão do Teto Constitucional, Imposto de Renda, PSSS e Faltas.
+- **Vantagens Indenizatórias e Compensatórias**: Diárias, Auxílios (Auxílio-Alimentação) e Outras Vantagens Indenizatórias (Férias Indenizadas (proporcionais), Licença-prêmio convertida em pecúnia - aposentado, Adicional de Férias Proporcionais Indenizadas e Férias Indenizadas).
+- **Remuneração Após Descontos Obrigatórios**: Corresponde à remuneração líquida do servidor que corresponde a remuneração básica mais as complementares menos os descontos. De forma mais precisa:
+**Remuneração Líquia = Remuneração Básica + Vantagens Pessoais + Função Comissão + Gratificação Natalina + Horas Extras + Outras Remunerações + Abono Permanência - Reversão ao Teto Constitucional - Imposto de Renda - PSSS - Faltas + Diárias + Auxílios + Vantagens Indenizatórias**
+
+Na maioria das análises que fizemos usamos a remuneração líquida do servidor.
+
+
+
+
+
+
+
+## Licença-Prêmio
+
+* **O que é Licença-Prêmio?**
+
+Outro tipo de pagamento efetuado pelo Senado chama-se de Licença-Prêmio. Esse pagamento era um direito previsto para os servidores na Lei n. 8.112/90 (derivada da licença especial prevista na Lei n. 1.711/52), que determinava que a cada cinco anos ininterruptos de exercício o servidor tinha direito a três meses de licença remunerada, a título de prêmio por assiduidade.
+
+A Medida Provisória nº 1.522, posteriormente convertida na Lei nº 9.527/97, de 11/10/1996 extinguiu a Licença-Prêmio e a transformou em Licença para Capacitação, ou seja, os servidores que ingressaram após o advento dessa lei, ou que não complementaram o quinquênio até a sua publicação, deixaram de contar com o direito à licença-prêmio e passaram a contar somente com a Licença para Capacitação.
+
+Todavia, restou assegurando o direito adquirido à licença-prêmio para o servidor que completou o tempo necessário até 15/10/1996, ponde este servidor gozar dos períodos de licença-prêmio ou convertê-los em dobro para a aposentadoria. Ainda, em caso de falecimento do servidor, restou assegurado o pagamento em pecúnia das licenças para os seus sucessores.
+
+Fonte:
+
+[Servidor: Conheça os seus direitos sobre licença-prêmio (acessado em 27 de julho de 2017)](https://sindjufe-go.jusbrasil.com.br/noticias/100639807/servidor-conheca-os-seus-direitos-sobre-licenca-premio)
+
+* **Quais são os gastos do Senado com Licença-Prêmio?**
+
+```{r licenca_premio, echo=FALSE, fig.width=5, fig.height=3}
+ratio <- 10^6
+
+#LICENÇA PRÊMIO POR CARGO TODOS OS ANOS
+salariosAgregados <- aggregate(licenca_premio_s~cargo, FUN=sum, data)
+keeps <- c("cargo","remuneracao")
+top_licenca_cargo_todos <- topSalarios(salariosAgregados, salariosAgregados$licenca_premio_s, keeps, 4)
+top_licenca_cargo_todos$remuneracao <- top_licenca_cargo_todos$remuneracao/ratio
+top_licenca_cargo_todos <- mutate(top_licenca_cargo_todos, data="Todos os Anos")
+
+#LICENÇA PRÊMIO POR CARGO NO ANO DE REFERÊNCIA MAIS RECENTE
+salariosAgregados <- aggregate(licenca_premio_s~cargo, FUN=sum, senado_recente)
+keeps <- c("cargo","remuneracao")
+top_licenca_cargo_recente <- topSalarios(salariosAgregados, salariosAgregados$licenca_premio_s, keeps, 4)
+top_licenca_cargo_recente$remuneracao <- top_licenca_cargo_recente$remuneracao/ratio
+top_licenca_cargo_recente <- mutate(top_licenca_cargo_recente, data=ano_max)
+
+licenca_cargo_completo <- rbind(top_licenca_cargo_todos, top_licenca_cargo_recente)
+
+beneficiados_licenca_premio <- data[data$licenca_premio_s>0,]
+```
+
+No ano de `r ano_max`, o Senado pagou cerca de R$ `r round(sum(top_licenca_cargo_recente$remuneracao), 1)` milhões de Licença-Prêmio. Sendo os cargos `r top_licenca_cargo_recente[1, ]$cargo` e `r top_licenca_cargo_recente[2, ]$cargo` que mais receberam Licença-Prêmio nesse ano, o que representa um total de R$ `r round(top_licenca_cargo_recente[1, ]$remuneracao, 1)` e R$ `r round(top_licenca_cargo_recente[2, ]$remuneracao, 1)` milhões de reais, respectivamente. Entre os anos `r ano_min` e `r ano_max`, foi pago cerca de R$ `r round(sum(top_licenca_cargo_todos$remuneracao), 1)` milhões de Licença-Prêmio (valor bruto, ou seja, sem descontos) para `r round(nrow(beneficiados_licenca_premio)/10^3, 0)` mil servidores, o que dá (em média), R$ `r round( (sum(top_licenca_cargo_todos$remuneracao)/nrow(beneficiados_licenca_premio))/10^3, 0)` mil por servidor.
+
+```{r plot_licenca_premio, echo=FALSE, fig.width=5, fig.height=3}
+glp <- hchart(licenca_cargo_completo, type = "column", hcaes(x = data, y = remuneracao, group=cargo)) %>%
+  hc_xAxis(title = list(text = "Cargo")) %>%
+  hc_yAxis(title = list(text = "Milhões de Reais"))
+glp
+```
+
+* **Quem são os servidores mais beneficiados com a Licença-Prêmio?**
+
+Na Tabela seguinte mostramos a lista dos dez servidores que mais se beneficiaram com a Licença-Prêmio entre os anos `r ano_min` e `r ano_max` de acordo com os dados disponíveis pelo Senado. A tabela exibe os seguintes campos: 
+
+* **Nome:** Nome completo do servidor beneficiado.
+* **Cargo:** Cargo do servidor.
+* **Especialidade:** Área de especialidade o do servidor.
+* **Situação:** Aposentado ou não (ativo).
+* **Mês e Ano:** Mês de referência do pagamento da Licença-Prêmio.
+* **Ano de Admissão:** Ano em que o servidor foi contrato pelo Senado.
+* **Licença-Prêmio (R$):** Valor de Licença-Prêmio em reais.
+
+```{r top_licenca_premio, echo=FALSE, fig.width=5, fig.height=3}
+keeps <- c("Nome","Cargo","Especialidade","Mês","Ano","Ano de Admissão","Licença-Prêmio* (R$)")
+salariosAgregados <- aggregate(licenca_premio_s~nome+cargo+especialidade+mes+ano+ano_de_admissao, FUN=sum, data)
+top_servidores_licenca_premio <- topSalarios(salariosAgregados, salariosAgregados$licenca_premio_s, keeps, 10)
+
+datatable(top_servidores_licenca_premio, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+```
+*Valor bruto de Licença-Prêmio (sem descontos).
+
