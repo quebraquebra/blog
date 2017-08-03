@@ -2,7 +2,7 @@
 layout: post
 title:  Maiores Beneficiados pela Licença-Prêmio no Senado
 published: true
-tags: [senado, análise]
+tags: [senado, análise, licença-prêmio]
 ---
 
 ```{r setup, include=FALSE}
@@ -152,7 +152,8 @@ keeps <- c("Nome","Cargo","Especialidade","Mês","Ano","Ano de Admissão","Licen
 salariosAgregados <- aggregate(licenca_premio_s~nome+cargo+especialidade+mes+ano+ano_de_admissao, FUN=sum, data)
 top_servidores_licenca_premio <- topSalarios(salariosAgregados, salariosAgregados$licenca_premio_s, keeps, 10)
 
-datatable(top_servidores_licenca_premio, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+datatable(top_servidores_licenca_premio, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
+  formatCurrency('Licença-Prêmio* (R$)', currency = "", interval = 3, mark = ",")
 ```
 *Valor bruto de Licença-Prêmio (sem descontos).
 

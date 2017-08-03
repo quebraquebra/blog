@@ -2,7 +2,7 @@
 layout: post
 title:  Recordistas em Ultrapassar o Teto Constitucional na Câmara dos Deputados
 published: true
-tags: [htmlwidgets, r]
+tags: [câmara, teto constitucional]
 ---
 
 ```{r setup, include=FALSE}
@@ -121,7 +121,7 @@ hc
 ```
 
 
-Fonte:
+Fonte (acessado em 02 de agosto de 2017):
   
 [Para STF, servidores podem superar teto com acúmulo de cargo](http://www1.folha.uol.com.br/poder/2017/04/1879189-para-stf-servidores-podem-superar-teto-com-acumulo-de-cargo.shtml)
   

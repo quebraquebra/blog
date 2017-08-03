@@ -2,7 +2,7 @@
 layout: post
 title:  Maiores Remunerações da Câmara
 published: true
-tags: [htmlwidgets, r]
+tags: [câmara, remunerações]
 ---
 
 ```{r setup, include=FALSE}
@@ -79,11 +79,22 @@ Considerando todos os servidores da Câmara, no período de `r ano_min` a `r ano
 
 
 * **Maiores remunerações da Câmara**
+
+```{r maiores_salarios_camara}
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=top_servidores_todos$Nome) %>%
+  hc_add_series(data=top_servidores_todos$`Remuneração Total (R$)`,name="Nome dos servidores")
+q
+```
+
   
   Os dez servidores que receberam as mais elevadas remunerações, no período de `r ano_min` e `r ano_max`, são apresentados na tabela seguinte. Totalizando R$ `r round(gasto_de_referencia/10^3, 0)` mil, entende-se por remuneração total a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens. Na tabela, é apresentado o nome completo do servidor, o seu respectivo cargo, o seu vínculo, o mês e o ano de referência do pagamento, assim como a remuneração total.
 
+
 ```{r top_servidores_todos, echo=FALSE}
-datatable(top_servidores_todos, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+datatable(top_servidores_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ",")
 ```
 
 
@@ -100,18 +111,37 @@ remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração T
 ```
 
 * **Quais deputados mais remunerados em um só mês?**
-  
+
+```{r maiores_salarios_deputados}
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=top_deputados_todos$Nome) %>%
+  hc_add_series(data=top_deputados_todos$`Remuneração Total (R$)`,name="Nome dos deputados")
+q
+```
+
+
   Entre os anos de `r ano_min` e `r ano_max`, `r round(nrow(todos_deputados)/10^3, 1)` mil deputados foram pagos. Na tabela seguinte, nós destacamos quais dez deputados mais remunerados nesse período, que receberam `r round(remuneracao_top_deputados/10^3, 1)` mil. A remuneração Total corresponde a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens.
 
 ```{r top_deputados_todos, echo=FALSE}
-datatable(top_deputados_todos, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+datatable(top_deputados_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ",")
 ```
 
 * **Quais deputados mais remunerados em um só mês de 2017?**
-  
+
+```{r maiores_salarios_deputados_2017}
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=top_deputados_recente$Nome) %>%
+  hc_add_series(data=top_deputados_recente$`Remuneração Total (R$)`,name="Nome dos deputados")
+q
+```
+
   Seguindo o mesmo cálculo da remuneração total, apresentamos quais dez deputados mais receberam em `r ano_max`, correspondendo à R$ `r round(remuneracao_top_deputados_recentes/10^3, 1)` mil no total. Nesse mesmo ano, `r round(nrow(todos_deputados_recente)/10^3, 1)` mil deputados foram pagos, sendo um total R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES
 
 ```{r top_deputados_recente, echo=FALSE}
-datatable(top_deputados_recente, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+datatable(top_deputados_recente, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ",")
 ```
 

@@ -111,6 +111,6 @@ colnames(top3_assessores) = c("Senador","Assessor","Vínculo","Remuneração (R$
 ```
 
 ```{r,echo=FALSE}
-datatable(top3_assessores,options = list(paging=F,info=F,searching=F),rownames=FALSE)
+datatable(top3_assessores, options = list(paging=F, info=F, searching=F), rownames=FALSE)
 ```
 

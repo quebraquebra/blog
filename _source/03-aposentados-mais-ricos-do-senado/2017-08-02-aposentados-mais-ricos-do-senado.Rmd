@@ -2,7 +2,7 @@
 layout: post
 title:  Aposentados com Maiores Remunerações do Senado
 published: true
-tags: [htmlwidgets, r]
+tags: [senado, aposentados]
 ---
 
 ```{r setup, include=FALSE}
@@ -172,7 +172,8 @@ A tabela seguinte mostra os meses e os respectivos aposentados que receberam as 
 keeps <- c("Nome","Cargo","Especialidade","Mês","Ano","Remuneração com Desconto (R$)")
 salariosAgregados <- aggregate(remuneracao_total_liquida~nome+cargo+especialidade+mes+ano, FUN=sum, aposentados_totais)
 top_servidores_aposentados <- topSalarios(salariosAgregados, salariosAgregados$remuneracao_total_liquida, keeps, 10)
-datatable(top_servidores_aposentados, options = list(paging=F,info=F,searching=F), rownames=FALSE)
+datatable(top_servidores_aposentados, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
+  formatCurrency('Remuneração com Desconto (R$)', currency = "", interval = 3, mark = ",")
 ```
 
 
