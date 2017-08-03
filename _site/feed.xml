@@ -5,9 +5,35 @@
     <description></description>
     <link>http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/</link>
     <atom:link href="http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Thu, 03 Aug 2017 17:42:22 -0300</pubDate>
-    <lastBuildDate>Thu, 03 Aug 2017 17:42:22 -0300</lastBuildDate>
+    <pubDate>Thu, 03 Aug 2017 17:49:57 -0300</pubDate>
+    <lastBuildDate>Thu, 03 Aug 2017 17:49:57 -0300</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        <title>Quanto que os Deputados Receberam nas Votações</title>
+        <description>&lt;!--html_preserve--&gt;
+&lt;div id=&quot;htmlwidget-4057aeebd6367625e25e&quot; style=&quot;width:100%;height:auto;&quot; class=&quot;datatables html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-4057aeebd6367625e25e&quot;&gt;{&quot;x&quot;:{&quot;filter&quot;:&quot;none&quot;,&quot;data&quot;:[[&quot;Abstenção&quot;,&quot;NÃO&quot;,&quot;presidente&quot;,&quot;SIM&quot;],[1599530.4,1311391.7,290048.8,1741759.8],[6832975.3,6526953.3,3589900,6236193.2]],&quot;container&quot;:&quot;&lt;table class=\&quot;display\&quot;&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Voto Temer&lt;\/th&gt;\n      &lt;th&gt;Emendas Pagas (R$)&lt;\/th&gt;\n      &lt;th&gt;Emendas Prometidas (R$)&lt;\/th&gt;\n    &lt;\/tr&gt;\n  &lt;\/thead&gt;\n&lt;\/table&gt;&quot;,&quot;options&quot;:{&quot;paging&quot;:false,&quot;info&quot;:false,&quot;searching&quot;:false,&quot;columnDefs&quot;:[{&quot;className&quot;:&quot;dt-right&quot;,&quot;targets&quot;:[1,2]}],&quot;order&quot;:[],&quot;autoWidth&quot;:false,&quot;orderClasses&quot;:false,&quot;rowCallback&quot;:&quot;function(row, data) {\nDTWidget.formatCurrency(this, row, data, 2, &#39;&#39;, 2, 3, &#39;,&#39;, &#39;.&#39;, true);\nDTWidget.formatCurrency(this, row, data, 1, &#39;&#39;, 2, 3, &#39;,&#39;, &#39;.&#39;, true);\n}&quot;},&quot;selection&quot;:{&quot;mode&quot;:&quot;multiple&quot;,&quot;selected&quot;:null,&quot;target&quot;:&quot;row&quot;}},&quot;evals&quot;:[&quot;options.rowCallback&quot;],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+&lt;!--/html_preserve--&gt;
+
+&lt;!--html_preserve--&gt;
+&lt;div id=&quot;htmlwidget-b68163d707db39a1a46e&quot; style=&quot;width:100%;height:auto;&quot; class=&quot;datatables html-widget&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;application/json&quot; data-for=&quot;htmlwidget-b68163d707db39a1a46e&quot;&gt;{&quot;x&quot;:{&quot;filter&quot;:&quot;none&quot;,&quot;data&quot;:[[&quot;Abstenção&quot;,&quot;Ausente&quot;,&quot;NÃO&quot;,&quot;Não estava no cargo&quot;,&quot;SIM&quot;],[1054192.7,576356.5,1593813.4,506609.7,1537771.2],[8200981.7,10159577,6293421.3,5590166.5,6441026.1]],&quot;container&quot;:&quot;&lt;table class=\&quot;display\&quot;&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Voto Dilma&lt;\/th&gt;\n      &lt;th&gt;Emendas Pagas (R$)&lt;\/th&gt;\n      &lt;th&gt;Emendas Prometidas (R$)&lt;\/th&gt;\n    &lt;\/tr&gt;\n  &lt;\/thead&gt;\n&lt;\/table&gt;&quot;,&quot;options&quot;:{&quot;paging&quot;:false,&quot;info&quot;:false,&quot;searching&quot;:false,&quot;columnDefs&quot;:[{&quot;className&quot;:&quot;dt-right&quot;,&quot;targets&quot;:[1,2]}],&quot;order&quot;:[],&quot;autoWidth&quot;:false,&quot;orderClasses&quot;:false,&quot;rowCallback&quot;:&quot;function(row, data) {\nDTWidget.formatCurrency(this, row, data, 2, &#39;&#39;, 2, 3, &#39;,&#39;, &#39;.&#39;, true);\nDTWidget.formatCurrency(this, row, data, 1, &#39;&#39;, 2, 3, &#39;,&#39;, &#39;.&#39;, true);\n}&quot;},&quot;selection&quot;:{&quot;mode&quot;:&quot;multiple&quot;,&quot;selected&quot;:null,&quot;target&quot;:&quot;row&quot;}},&quot;evals&quot;:[&quot;options.rowCallback&quot;],&quot;jsHooks&quot;:[]}&lt;/script&gt;
+&lt;!--/html_preserve--&gt;
+
+</description>
+        <pubDate>Thu, 03 Aug 2017 00:00:00 -0300</pubDate>
+        <link>http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/correlacao-votacao.html</link>
+        <guid isPermaLink="true">http://quebraquebra.lsd.ufcg.edu.br/blog-quebra-quebra/2017/08/correlacao-votacao.html</guid>
+        
+        <category>câmara</category>
+        
+        <category>emendas parlamentares</category>
+        
+        <category>impeachment</category>
+        
+        
+      </item>
     
       <item>
         <title>Recordistas em Ultrapassar o Teto Constitucional na Câmara dos Deputados</title>
