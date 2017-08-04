@@ -16,7 +16,7 @@ library(DT)
 
 ```{r carregando_dados,include=FALSE}
 
-data_filename = "~/Documents/quebra-quebra/senado_federal/dados/dados_senado.csv"
+data_filename = "../../_data/dados_senado.csv"
 data <- read_csv(file=data_filename)
 colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
 
@@ -31,7 +31,7 @@ senado_2016 <- data[data$ano==2016,]
 
 ```{r assessores_2016}
 senado_2016 <- data[data$ano==2016,]
-qtde_assessores <- readr::read_csv(file="qtde_assessores.csv")
+qtde_assessores <- readr::read_csv(file="../../_data/qtde_assessores.csv")
 qtde_assessores =  arrange(qtde_assessores,desc(TOTAL))
 
 ```
@@ -57,18 +57,18 @@ q
 
 
 ```{r top-3-assessores, include=FALSE}
-qtde_assessores <- readr::read_csv(file="qtde_assessores.csv")
+qtde_assessores <- readr::read_csv(file="../../_data/qtde_assessores.csv")
 top3_senadores = qtde_assessores[c(1,2,3),c(1,2,3,6)]
 
 ####################### Assessores João Alberto #######################
-assessores_ja <- readr::read_csv(file="assessores_joao_alberto.csv")
+assessores_ja <- readr::read_csv(file="../../_data/assessores_joao_alberto.csv")
 assessores_ja = assessores_ja[[2]] 
 assessores_ja = filter(senado_2016, nome %in% assessores_ja) %>%
   arrange(desc(remuneracao_total_liquida))
 soma_sal_ja = sum(assessores_ja$remuneracao_total_liquida)
 dist_sal_ja = summary(assessores_ja$remuneracao_total_liquida)
 ####################### Assessores João Alberto #######################
-assessores_col <- readr::read_csv(file="assessores_collor.csv")
+assessores_col <- readr::read_csv(file="../../_data/assessores_collor.csv")
 assessores_col = assessores_col[[2]] 
 num_assessores_col = length(assessores_col)
 num_assessores_col
@@ -77,7 +77,7 @@ assessores_col = filter(senado_2016, nome %in% assessores_col) %>%
 soma_sal_col = sum(assessores_col$remuneracao_total_liquida)
 dist_sal_col = summary(assessores_col$remuneracao_total_liquida)
 ####################### Assessores Hélio José #######################
-assessores_he <- readr::read_csv(file="assessores_helio_jose.csv")
+assessores_he <- readr::read_csv(file="../../_data/assessores_helio_jose.csv")
 assessores_he = assessores_he[[2]] 
 assessores_he = filter(senado_2016, nome %in% assessores_he) %>%  arrange(desc(remuneracao_total_liquida))
 soma_sal_he = sum(assessores_he$remuneracao_total_liquida)
