@@ -2,3 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+_data/dados_senado.csv
+_data/senado_dados_2016_aposentados.csv
+_data/camara_dados.txt

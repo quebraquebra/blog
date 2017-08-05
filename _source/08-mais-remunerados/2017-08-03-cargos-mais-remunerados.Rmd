@@ -1,0 +1,113 @@
+---
+title: "Categorias mais bem remunerados da Câmara e do Senado"
+published: yes
+tags:
+- remuneracao
+- camara
+- senado
+layout: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
+library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
+library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
+```
+
+```{r pre_processing, include=FALSE}
+mr_camara_cargo <- read.csv2(file="../../_data/08-mais-remunerados/mr_camara_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_camara_nome <- read.csv2(file="../../_data/08-mais-remunerados/mr_camara_nome.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_camara_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/mr_camara_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_senado_nome <- read.csv2(file="../../_data/08-mais-remunerados/mr_senado_nome.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_senado_cargo <- read.csv2(file="../../_data/08-mais-remunerados/mr_senado_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_senado_especialidade <- read.csv2(file="../../_data/08-mais-remunerados/mr_senado_especialidade.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+mr_senado_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/mr_senado_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_camara_cargo <- read.csv2(file="../../_data/08-mais-remunerados/qc_camara_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_camara_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/qc_camara_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_cargo <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_especialidade <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_especialidade.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+
+options(scipen=2000, OutDec= ",")
+```
+
+## Remuneração
+
+No Brasil, o Poder Legislativo é organizado na modalidade bicameral, ou seja, é constituído de duas câmaras: a dos Deputados e o Senado Federal. Juntas, as duas Casas compõem o Congresso Nacional e têm funções específicas, discriminadas na Constituição Federal. A principal delas é a elaboração, o debate e a aprovação de leis.
+
+Senado Federal e Câmara dos Deputados também têm competências distintas. Por exemplo: enquanto o primeiro tem, entre as suas atribuições privativas, a missão de aprovar a designação de embaixadores, de magistrados e de titulares de outros cargos previstos na Constituição, a segunda tem a primazia sobre a discussão de projetos originados no Executivo.
+
+O Senado Federal é composto por 81 Senadores: três para cada um dos 26 estados e para o Distrito Federal, em uma divisão igualitária. Já na Câmara, composta por 513 deputados.
+
+[Fontes (acessadas em 05/08/2017)]: [Site do Senado](https://www12.senado.leg.br/transparencia/laipergunta).
+
+### **Câmara dos Deputados**
+
+###Cargo
+
+Além dos 513 deputados, existem outros cargos que podem ser encontrados na Câmara. Que são principalmente relacionados a elaboração de leis.
+
+Desses cargos, o Analista Legislativo é o que acumula a maior remuneração desde 2013, com **2 bilhões**. Já o menor é o Cargo de Comissão: 1 milhão. 
+
+```{r mr_camara_cargo, echo=FALSE}
+p_mr_camara_cargo <- hchart(mr_camara_cargo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
+  hc_xAxis(title = list(text = "Cargos")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)"))
+p_mr_camara_cargo
+```
+
+###Vínculo
+
+Tanto como os cargos, há outros tipos de vinculação à Câmara, como os funcionários inativos. Que neste caso representão um custo de remunerção de quase **3 milhões**.
+
+```{r mr_camara_vinculo, echo=FALSE}
+p_mr_camara_vinculo <- hchart(mr_camara_vinculo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
+  hc_xAxis(title = list(text = "Vínculo")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)"))
+p_mr_camara_vinculo
+```
+
+### **Senado Federal**
+
+###Cargo
+
+No Senado, o número total de funcionários chega a marca de 10000. O cargo de Analista legislativo é, novamente, o com maior remuneração. Desta vez com **3,3 bilhões**.
+```{r mr_senado_cargo, echo=FALSE}
+p_mr_senado_cargo <- hchart(mr_senado_cargo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
+  hc_xAxis(title = list(text = "Cargos")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)"))
+p_mr_senado_cargo
+```
+
+###Vínculo
+
+Para os vínculos, temos apenas duas categorias:
+
+```{r mr_senado_vinculo, echo=FALSE}
+p_mr_senado_vinculo <- hchart(mr_senado_vinculo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
+  hc_xAxis(title = list(text = "Vínculo")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)"))
+p_mr_senado_vinculo
+```
+
+###Especialidade
+
+Já as especialidades são as mais variadas com, porém, a área legislativa se destaca novamente com Processo Legislativo sendo a especialidade mais bem remunerada: acumulo de quase **2 bilhões**.
+
+```{r mr_senado_especialidade, echo=FALSE}
+p_mr_senado_vinculo <- hchart(mr_senado_especialidade, type = "bar", hcaes(x = area, y = value, group=area)) %>%
+  hc_xAxis(title = list(text = "Especialidade")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)"))
+p_mr_senado_vinculo
+```

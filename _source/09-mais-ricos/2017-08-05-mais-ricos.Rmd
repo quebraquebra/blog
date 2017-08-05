@@ -1,0 +1,112 @@
+---
+title: "Quanto que as categorias da Câmara e do Senado recebem ao longo do tempo"
+published: yes
+tags:
+- remuneracao
+- camara
+- senado
+layout: post
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
+library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
+library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
+```
+
+```{r pre_processing, include=FALSE}
+qc_camara_cargo <- read.csv2(file="../../_data/08-mais-remunerados/qc_camara_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_camara_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/qc_camara_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_cargo <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_cargo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_especialidade <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_especialidade.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+qc_senado_vinculo <- read.csv2(file="../../_data/08-mais-remunerados/qc_senado_vinculo.csv", sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+
+options(scipen=2000, OutDec= ",")
+```
+
+## Remuneração
+
+No Brasil, o Poder Legislativo é organizado na modalidade bicameral, ou seja, é constituído de duas câmaras: a dos Deputados e o Senado Federal. Juntas, as duas Casas compõem o Congresso Nacional e têm funções específicas, discriminadas na Constituição Federal. A principal delas é a elaboração, o debate e a aprovação de leis.
+
+Senado Federal e Câmara dos Deputados também têm competências distintas. Por exemplo: enquanto o primeiro tem, entre as suas atribuições privativas, a missão de aprovar a designação de embaixadores, de magistrados e de titulares de outros cargos previstos na Constituição, a segunda tem a primazia sobre a discussão de projetos originados no Executivo.
+
+O Senado Federal é composto por 81 Senadores: três para cada um dos 26 estados e para o Distrito Federal, em uma divisão igualitária. Já na Câmara, composta por 513 deputados.
+
+[Fontes (acessadas em 05/08/2017)]: [Site do Senado](https://www12.senado.leg.br/transparencia/laipergunta).
+
+Aparentemente, com raras exceções, a remuneração de todos os categorias vem aumentando ao longo do tempo. Valendo ressaltar que os dados de 2017 só vão até junho, porém, os valores da remunerações, em sua grande maioria, já passam da metade do  mesmo valor no mês de junho de 2016.
+
+### **Câmara dos Deputados**
+
+As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos.
+
+###Cargo
+
+```{r qr_camara_cargo, echo=FALSE}
+p_qr_camara_cargo <- hchart(qc_camara_cargo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+  hc_xAxis(title = list(text = "Cargos")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
+  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+p_qr_camara_cargo
+```
+
+###Vínculo
+
+```{r qr_camara_vinculo, echo=FALSE}
+p_qr_camara_vinculo <- hchart(qc_camara_vinculo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+  hc_xAxis(title = list(text = "Vínculo")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
+  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+p_qr_camara_vinculo
+
+```
+
+### **Senado Federal**
+
+Já no Senado, esse crescimento é bem mais singelo.
+
+###Cargo
+
+```{r qr_senado_cargo, echo=FALSE}
+p_qr_senado_cargo <- hchart(qc_senado_cargo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+  hc_xAxis(title = list(text = "Cargo")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
+  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+p_qr_senado_cargo
+```
+
+###Vínculo
+
+```{r qr_senado_vinculo, echo=FALSE}
+p_qr_senado_vinculo <- hchart(qc_senado_vinculo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+  hc_xAxis(title = list(text = "Vínculo")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
+  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+p_qr_senado_vinculo
+```
+
+###Especialidade
+
+```{r qr_senado_especialidade, echo=FALSE}
+p_qr_senado_especialidade <- hchart(qc_senado_especialidade, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+  hc_xAxis(title = list(text = "Especialidade")) %>%
+  hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
+  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+p_qr_senado_especialidade
+```

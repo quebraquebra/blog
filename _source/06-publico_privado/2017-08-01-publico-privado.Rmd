@@ -7,16 +7,25 @@ tags: [htmlwidgets, r]
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
-library(highcharter)
-library(readr)
 library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
 library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
 ```
 
 ```{r carregando_dados,include=FALSE}
 
-data_filename = "~/Documents/quebra-quebra/senado_federal/dados/dados_senado.csv"
-data <- read_csv(file=data_filename)
+data_filename = "../../_data/senado_dados_2016_aposentados.csv"
+data <- read.csv2(file=data_filename, sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
 colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
 
 data <- mutate(data, remuneracao_total=remuneracao_basica + vantagens_pessoais + funcao_comissao + gratificacao_natalina + horas_extras + outras_remuneracoes + adicional_periculosidade + adicional_noturno + abono_permanencia + reversao + imposto_de_renda + psss + faltas + diarias + auxilios + auxilio_alimentacao + vantagens_indenizatorias + adicional_ferias + ferias_indenizatorias + licenca_premio)
@@ -80,7 +89,7 @@ publico_privado = mutate(publico_privado, salario_brasil=c(3940, 1305,2678.59,23
 colnames(publico_privado) = c("Especialidade","Senado","Brasil")
 publico_privado[,1] = sapply(publico_privado[,1],as.character)
 publico_privado[3,1] = "SECRETÁRIO"
-diferenca = mutate(publico_privado, diferença = floor(Senado/Brasil))
+diferenca = mutate(publico_privado, diferenca = floor(Senado/Brasil))
 #publico_privado[,2] = format(publico_privado[,2], decimal.mark = ',')
 #publico_privado[,3] =format(publico_privado[,3], decimal.mark = ',')
 
@@ -104,7 +113,7 @@ No gráfico abaixo vemos quantas vezes mais cada especialidade no Senado ganhou 
 q = highchart() %>%
   hc_chart(type="column") %>%
   hc_xAxis(categories=diferenca$Especialidade) %>%
-  hc_add_series(data=diferenca$diferença, name="Especialidade")
+  hc_add_series(data=diferenca$diferenca, name="Especialidade")
 q
 ```
 
