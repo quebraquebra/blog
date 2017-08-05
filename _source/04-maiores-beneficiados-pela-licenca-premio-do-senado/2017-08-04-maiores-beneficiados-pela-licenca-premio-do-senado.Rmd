@@ -24,7 +24,7 @@ library(plotly)
 
 
 ```{r pre_processing, include=FALSE}
-data_filename = "~/Documents/dados_senado.csv"
+data_filename = "../../_data/dados_senado.csv"
 
 #######################################################################################################
 #Por convensão, decidiu-se utilizar o formato de arquivo CSV, logo o separador sempre será a vírgula  #
