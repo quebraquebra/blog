@@ -61,13 +61,11 @@ gasto_de_referencia <- sum(top_servidores_licenca_premio$`Licença-Prêmio* (R$)
 
 ```
 
-## Gastos do Senado
-
 Nós extraimos a folha de pagamento do Senado para um total de `r round(nrow(data)/10^3, 0)` mil empenhos de pagamento entre os anos de `r ano_min` e `r ano_max`. Desse total, só em `r ano_max` foram `r round(nrow(senado_recente)/10^3, 0)` mil pagamentos o que corresponde a `r  round(nrow(senado_recente)/nrow(data)*100,1)`% de todos os pagamentos nesse período.
 
-O total de gastos com a folha do Senado nesse período está na ordem de R$ `r round(remuneracao_total_liquida/10^9, 2)` bilhões de reais com uma média de R$ `r format(remuneracao_total_liquida/nrow(data), big.mark='.',decimal.mark=',',digits=2)` por servidor, já inclusos todos os descontos como o imposto de renda, Plano de Seguridade Social do Servidor Público (PSSS), reversão do teto constitucional e eventuais ausências.
+O total de gastos com a folha do Senado nesse período está na ordem de R$ `r round(remuneracao_total_liquida/10^9, 2)` bilhões de reais com uma média de R$ `r format(remuneracao_total_liquida/nrow(data), big.mark='.',decimal.mark=',',digits=2)` por servidor, já inclusos todos os descontos como o imposto de renda, plano de seguridade social do servidor público (PSSS), reversão do teto constitucional e eventuais ausências.
 
-* **Como é calculada a remuneração dos servidores?**
+### Como é calculada a remuneração?
 
 Para entender a remuneração dos servidores da folha do Senado é importante observar que cada servidor (ou a maioria deles) possui duas folhas de pagamento: a *normal* e a *suplementar*. Para cada folha de pagamento existem os seguintes campos de pagamento:
 
@@ -80,14 +78,8 @@ Para entender a remuneração dos servidores da folha do Senado é importante ob
 - **Remuneração Após Descontos Obrigatórios**: Corresponde à remuneração líquida do servidor que corresponde a remuneração básica mais as complementares menos os descontos. De forma mais precisa:
 **Remuneração Líquia = Remuneração Básica + Vantagens Pessoais + Função Comissão + Gratificação Natalina + Horas Extras + Outras Remunerações + Abono Permanência - Reversão ao Teto Constitucional - Imposto de Renda - PSSS - Faltas + Diárias + Auxílios + Vantagens Indenizatórias**
 
-Na maioria das análises que fizemos usamos a remuneração líquida do servidor.
 
-
-
-
-## Aposentados
-
-* **Quanto o Senado paga aos Aposentados?**
+### Custo da Aposentadoria no Senado
 
 ```{r calculo_aposentados, echo=FALSE}
 aposentados_recente <- senado_recente[senado_recente$situacao=="APOSENTADO",]
@@ -98,9 +90,9 @@ receita_aposentados_todos <- sum(aposentados_totais$remuneracao_total_liquida)
 receita_aposentados_recente <- sum(aposentados_recente$remuneracao_total_liquida)
 ```
 
-O Senado fornece dados para `r round(nrow(aposentados_totais)/10^3, 0)` mil pagamentos referentes a aposentados entre os anos de `r ano_min` e `r ano_max`. Nesse período já foi pago um total `r round(receita_aposentados_todos/10^9, 1)` bilhões de reais, o que representa `r round(receita_aposentados_todos/remuneracao_total_liquida*100, 1)`% de todos os pagamentos realizados nesse intervalo de tempo.
+O site do Senado fornece dados para `r round(nrow(aposentados_totais)/10^3, 0)` mil pagamentos referentes à aposentadorias entre os anos de `r ano_min` e `r ano_max`. Nesse período já foi pago um total `r round(receita_aposentados_todos/10^9, 1)` bilhões de reais para aposentadorias, o que representa `r round(receita_aposentados_todos/remuneracao_total_liquida*100, 1)`% de todos os pagamentos realizados nesse intervalo de tempo.
 
-Só no ano de `r ano_max`, o Senado pagou `r round(receita_aposentados_recente/1000000, 1)` milhões de reais em remuneração o que representa `r round(receita_aposentados_recente/receita_total_recente*100, 1)`% do total da folha de pagamento do Senado.
+Só no ano de `r ano_max` o Senado pagou `r round(receita_aposentados_recente/1000000, 1)` milhões de reais para ex-servidores do senado, o que representa `r round(receita_aposentados_recente/receita_total_recente*100, 1)`% do total da folha de pagamento do Senado nesse ano.
 
 
 ```{r aposentados_graficos,fig.align='center', echo=FALSE, fig.width=3,fig.height=1}
@@ -120,8 +112,6 @@ gap
 ```
 
 
-* **Qual a relação entre o arrecadado e o pago aos aposentados?**
-
 ```{r calculo_arrecadacao, echo=FALSE}
 arrecadao_total <- sum(data$imposto_de_renda+data$psss+data$reversao)
 deficit_total <- sum(aposentados_totais$remuneracao_total_liquida)+arrecadao_total
@@ -134,9 +124,9 @@ quantidade_pagamentos <- nrow(data)
 ```
 
 
-O Senado arrecada alguns valores do próprio servidor por meio de descontos do imposto de renda e do Plano de Seguridade Social do Servidor Público (PSSS). Entre `r ano_min` e `r ano_max` foi arrecadado por meio do imposto de renda R$ `r round(sum(data$imposto_de_renda)/-10^6, 1)` milhões e por meio do PSSS cerca de R$ `r round(sum(data$psss)/-10^6, 1)` milhões, totalizando um montante de R$ `r round(arrecadao_inss_e_psss/-10^9, 1)` bilhões. Adicionalmente, foram arrecaddaos R$ `r round(sum(data$reversao)/-10^6, 1)` por meio da reversão do teto constitucional . 
+O Senado arrecada alguns valores do próprio servidor por meio de descontos do imposto de renda e do PSSS. Entre `r ano_min` e `r ano_max` foi arrecadado por meio do imposto de renda R$ `r round(sum(data$imposto_de_renda)/-10^6, 1)` milhões e por meio do PSSS cerca de R$ `r round(sum(data$psss)/-10^6, 1)` milhões, totalizando um montante de R$ `r round(arrecadao_inss_e_psss/-10^9, 1)` bilhões. Adicionalmente, foram arrecaddaos R$ `r round(sum(data$reversao)/-10^6, 1)` por meio da reversão do teto constitucional . 
 
-Nesse mesmo intervalo de tempo (`r ano_min`-`r ano_max`), o Senado efetuou o pagamento de R$ `r round(sum(aposentados_totais$remuneracao_total_liquida)/10^9, 1)` bilhões de reais para aposentados (conforme descrito na seção anterior), mas arrecadou dos próprios servidores somente R$ `r round(arrecadao_total/10^9, 1)*(-1)` bilhões, o que significa um DÉFICIT de R$ `r round(deficit_total/10^9, 1)` bilhão. *Conclusão: A previdência do Senado não se paga.*
+Nesse mesmo intervalo de tempo (`r ano_min`-`r ano_max`) o Senado efetuou o pagamento de R$ `r round(sum(aposentados_totais$remuneracao_total_liquida)/10^9, 1)` bilhões de reais para aposentados (conforme descrito na seção anterior), mas arrecadou somente R$ `r round(arrecadao_total/10^9, 1)*(-1)` bilhões dos servidores do Senado, o que significa um DÉFICIT de R$ `r round(deficit_total/10^9, 1)` bilhão. *Ou seja, aparentemente a previdência do Senado não se paga.*
 
 ```{r arrecadao_graficos, fig.align='center', echo=FALSE, fig.width=5, fig.height=3}
 library(ggplot2)
@@ -155,18 +145,7 @@ gse
 
 ```
 
-Considerando ambas folhas de pagamento (normal e suplementar), temos:
-
-- **Aposentados**: Corresponde a Remuneração Líquida de todos os Aposentados.
-- **PSSS**: Plano de Seguridade Social do Servidor Público (PSSS) arrecadado pelo Senado descontado por todos os servidores de ambas as folhas de pagamento.
-- **INSS**: Arrecadação do Senado descontado de todos os servidores de ambas as folhas de pagamento.
-- **Reversão**: Corresponde ao desconto dado pelo Senado a todos os servidores que ultrapassaram o teto constitucional. 
-- **Déficit**: Valor que o Senado precisaria arrecadar para equilibrar as contas: PSSS + INSS + Reversão - Aposentados.
-
-
-* **Quais aposentados receberam os maiores valores?**
-
-A tabela seguinte mostra os meses e os respectivos aposentados que receberam as maiores remunerações entre `r ano_min` e `r ano_max`. Os valores de remuneração apresentados correspondem à Remuneração Líquida (previamente explicada). Observe que não estamos de nenhuma forma fazendo implicações de irregularidade, estamos somente exemplificando como o acesso a esses dados pode deixar essas informaçõe mais transparentes.
+A tabela seguinte mostra os meses e os respectivos aposentados que receberam as maiores remunerações entre `r ano_min` e `r ano_max`. Os valores de remuneração apresentados correspondem à remuneração líquida (previamente explicada). Observe que não estamos de nenhuma forma fazendo implicações de qualquer tipo de irregularidade, estamos somente exemplificando como o acesso a esses dados pode trazer mais transparência para essas informações.
 
 ```{r top_salarios_aposentados, echo=FALSE}
 keeps <- c("Nome","Cargo","Especialidade","Mês","Ano","Remuneração com Desconto (R$)")
