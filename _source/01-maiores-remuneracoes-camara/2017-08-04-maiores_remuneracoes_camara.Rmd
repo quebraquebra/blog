@@ -75,9 +75,9 @@ teto_constitucional <- 37476.93
 
 ```
 
-Considerando todos os servidores da Câmara no período de `r ano_min` a `r ano_max`, o site da transparência disponibiliza `r round(nrow(data)/10^3, 0)` mil pagamentos, o equivalente à R$ `r round(sum(data$remuneracao_total)/(10^9), 1)` bilhões. Só deputados são `r round(nrow(todos_deputados)/10^3, 0)` mil na folha de pagamento, correspondendo à `r round(nrow(todos_deputados)/nrow(data)*100, 1)`% do total nesse intervalo de tempo. Mas, ao observarmos o montante pago aos deputados, percebe-se que eles corresponde à R$ `r round(remuneracao_deputados/(10^6), 0)` milhões em pagamentos, ou seja, `r round(remuneracao_deputados/remuneracao_total*100, 1)`% do total. Só em `r ano_max`, `r round(nrow(todos_servidores_recente)/10^3, 1)` mil servidores já foram pagos pela Câmara, sendo `r round(nrow(todos_deputados_recente)/10^3, 1)` mil desputados, ou `r round(nrow(todos_deputados_recente)/nrow(todos_servidores_recente)*100, 1)`% do total. Em outras palavras, foi pago R$ `r round(remuneracao_recente/10^6, 1)` MILHÕES em remuneração dos servidores, sendo R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES destinados aos deputados (`r round(remuneracao_deputados_recente/remuneracao_recente*100, 1)`% do total).
+Nós coletamos dados sobre `r round(nrow(data)/10^3, 0)` mil pagamentos a servidores da Câmara entre `r ano_min`-`r ano_max`, o que equivale à R$ `r round(sum(data$remuneracao_total)/(10^9), 1)` bilhões. Só a deputados foram pagos R$ `r round(remuneracao_deputados/(10^6), 0)` milhões nesse período, o que corresponde a `r round(remuneracao_deputados/remuneracao_total*100, 1)`% do total. Só em `r ano_max` já foi pago R$ `r round(remuneracao_recente/10^6, 1)` milhões aos servidores da Câmara, sendo `r round(remuneracao_deputados_recente/remuneracao_recente*100, 1)`% desse valor destinado aos deputados.
 
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp
 
 * **Maiores remunerações da Câmara**
 
