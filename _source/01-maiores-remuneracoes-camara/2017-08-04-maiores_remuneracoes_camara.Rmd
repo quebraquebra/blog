@@ -110,7 +110,7 @@ remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração T
 
 &nbsp;&nbsp;
 
-* **Quais deputados receneram as maiores remunerações em um só mês?**
+* **Quais deputados receberam as maiores remunerações em um só mês?**
 
 ```{r maiores_salarios_deputados}
 q = highchart() %>%
@@ -131,7 +131,7 @@ datatable(top_deputados_todos, options = list(paging=F, info=F, searching=F), ro
 
 &nbsp;&nbsp;&nbsp;
 
-* **Quais deputados mais remunerados em um só mês de 2017?**
+Abaixo repetimos a análise anterior considerando somente o ano `r ano_max`.
 
 ```{r maiores_salarios_deputados_2017}
 q = highchart() %>%
@@ -141,9 +141,6 @@ q = highchart() %>%
 q
 ```
 
-&nbsp;&nbsp;
-
-  Seguindo o mesmo cálculo da remuneração total, apresentamos quais dez deputados mais receberam em `r ano_max`, correspondendo à R$ `r round(remuneracao_top_deputados_recentes/10^3, 1)` mil no total. Nesse mesmo ano, `r round(nrow(todos_deputados_recente)/10^3, 1)` mil deputados foram pagos, sendo um total R$ `r round(remuneracao_deputados_recente/10^6, 1)` MILHÕES
 
 ```{r top_deputados_recente, echo=FALSE}
 datatable(top_deputados_recente, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
