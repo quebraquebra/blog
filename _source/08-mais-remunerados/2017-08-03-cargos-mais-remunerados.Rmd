@@ -54,7 +54,7 @@ O Senado Federal é composto por 81 Senadores: três para cada um dos 26 estados
 
 ### **Câmara dos Deputados**
 
-###Cargo
+* **Cargo**
 
 Além dos 513 deputados, existem outros cargos que podem ser encontrados na Câmara. Que são principalmente relacionados a elaboração de leis.
 
@@ -67,7 +67,7 @@ p_mr_camara_cargo <- hchart(mr_camara_cargo, type = "bar", hcaes(x = area, y = v
 p_mr_camara_cargo
 ```
 
-###Vínculo
+* **Vínculo**
 
 Tanto como os cargos, há outros tipos de vinculação à Câmara, como os funcionários inativos. Que neste caso representão um custo de remunerção de quase **3 milhões**.
 
@@ -80,7 +80,7 @@ p_mr_camara_vinculo
 
 ### **Senado Federal**
 
-###Cargo
+* **Cargo**
 
 No Senado, o número total de funcionários chega a marca de 10000. O cargo de Analista legislativo é, novamente, o com maior remuneração. Desta vez com **3,3 bilhões**.
 ```{r mr_senado_cargo, echo=FALSE}
@@ -90,7 +90,7 @@ p_mr_senado_cargo <- hchart(mr_senado_cargo, type = "bar", hcaes(x = area, y = v
 p_mr_senado_cargo
 ```
 
-###Vínculo
+* **Vínculo**
 
 Para os vínculos, temos apenas duas categorias:
 
@@ -101,7 +101,7 @@ p_mr_senado_vinculo <- hchart(mr_senado_vinculo, type = "bar", hcaes(x = area, y
 p_mr_senado_vinculo
 ```
 
-###Especialidade
+* **Especialidade**
 
 Já as especialidades são as mais variadas com, porém, a área legislativa se destaca novamente com Processo Legislativo sendo a especialidade mais bem remunerada: acumulo de quase **2 bilhões**.
 

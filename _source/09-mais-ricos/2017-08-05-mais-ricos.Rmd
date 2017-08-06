@@ -51,7 +51,7 @@ Aparentemente, com raras exceções, a remuneração de todos os categorias vem 
 
 As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos.
 
-###Cargo
+* **Cargo**
 
 ```{r qr_camara_cargo, echo=FALSE}
 p_qr_camara_cargo <- hchart(qc_camara_cargo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
@@ -62,7 +62,7 @@ p_qr_camara_cargo <- hchart(qc_camara_cargo, type = "bubble", hcaes(x = d, y = k
 p_qr_camara_cargo
 ```
 
-###Vínculo
+* **Vínculo**
 
 ```{r qr_camara_vinculo, echo=FALSE}
 p_qr_camara_vinculo <- hchart(qc_camara_vinculo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
@@ -78,7 +78,7 @@ p_qr_camara_vinculo
 
 Já no Senado, esse crescimento é bem mais singelo.
 
-###Cargo
+* **Cargo**
 
 ```{r qr_senado_cargo, echo=FALSE}
 p_qr_senado_cargo <- hchart(qc_senado_cargo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
@@ -89,7 +89,7 @@ p_qr_senado_cargo <- hchart(qc_senado_cargo, type = "bubble", hcaes(x = d, y = k
 p_qr_senado_cargo
 ```
 
-###Vínculo
+* **Vínculo**
 
 ```{r qr_senado_vinculo, echo=FALSE}
 p_qr_senado_vinculo <- hchart(qc_senado_vinculo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
@@ -100,7 +100,7 @@ p_qr_senado_vinculo <- hchart(qc_senado_vinculo, type = "bubble", hcaes(x = d, y
 p_qr_senado_vinculo
 ```
 
-###Especialidade
+* **Especialidade**
 
 ```{r qr_senado_especialidade, echo=FALSE}
 p_qr_senado_especialidade <- hchart(qc_senado_especialidade, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%

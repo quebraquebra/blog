@@ -1,38 +1,24 @@
-# kntir-jekyll (with htmlwidgets)
+# Análise de Dados da Folha da Câmara e Senado
 
-A fork of Yihui's superb [knitr-jekyll](https://github.com/yihui/knitr-jekyll) repo, tweaked to allow it to render [`htmlwidgets`](http://www.htmlwidgets.org/) output, using some additional [wrapper functions](https://github.com/brendan-R/brocks/blob/master/R/blog_stuff.R) from my [personal R package](https://github.com/brendan-R/brocks).
+## Dependências
+### Backend
 
-This blog-post explains the ins-and-outs of what's going on under the hood to make it all work: [brendanrocks.com/htmlwidgets-knitr-jekyll](http://brendanrocks.com/htmlwidgets-knitr-jekyll/).
+Esse blog de análises usa o [R (>3.3)](https://cran.r-project.org/) para a geração das análises (via Rmarkdown) e [jekyll](https://jekyllrb.com/) para converter os arquivos markdown em HTML. 
 
-Note: This repo stores the source for posts in thier own subdirectories (e.g. `./_source/new-post/2015-12-07-new-post.Rmd`), which is purely my personal preference, but is slightly different to the original. This means that to get the blog generated/served, you might have more luck with `brocks::blog_gen()`/`brocks::blog_serve()` than the `servr::jekyll()` defaults.
+Todos os pacotes necessários serão instalados assim que você abrir o projeto pela primeira vez (o 'packrat' vai cuidar disso).
 
-## Installation / Dependencies
+### Frontend
 
-#### R Package Dependencies
+> gem install jekyll bundler
 
-To get this repo working, you'll need the wrapper function `brocks::htmlwidgets_deps` in the `brocks` package. To render the example post featuring `htmlwidgets`, you'll also need those packages. Here's the lot:
+Servir localmente via *RStudio*
 
-```r
-# Required for the htmlwidgets wrapper functions -----------------------------
-# install.packages("devtools")
-devtools::install_github("brendan-r/brocks")
+> brocks::blog_serve()
 
-# For knitr-jekyll, and the htmlwidgets stuff --------------------------------
-install.packages(c(
-  "servr",
-  "knitr",
-  "metricsgraphics",
-  "leaflet",
-  "threejs",
-  "maps"
-))
+Servir localmente via *Linha de Comando*
 
-```
+> Rscript -e 'brocks::blog_serve()'
 
-#### This repo
+### Dados
 
-Clone with git, or just download as a .zip. From there, get editing!
-
-## Getting blogging
-In addition to Yihui's post on how the system works, I wrote a little guide (with a gentle introduction to static site generation) here:  [brendanrocks.com/blogging-with-rmarkdown-knitr-jekyll](http://brendanrocks.com/blogging-with-rmarkdown-knitr-jekyll/).
-
+Embora a maioria das análises aqui postadas usem dados acessados localmente, os dados podem ser acessados pela [API desenvolvida pela equipe do QuebraQuebra](http://api.quebraquebra.lsd.ufcg.edu.br/).

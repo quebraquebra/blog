@@ -2,6 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
+<<<<<<< HEAD
 _data/dados_senado.csv
 _data/senado_dados_2016_aposentados.csv
 _data/camara_dados.txt
+=======
+dados_senado.csv
+packrat/lib*/
+>>>>>>> 4ce4bb9a5ad079fb7c6ec08866b824697b6cb3e3

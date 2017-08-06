@@ -1,0 +1,146 @@
+---
+layout: post
+title:  Funcionalismo Público vs Privado
+published: true
+tags: [htmlwidgets, r]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
+library(dplyr)
+library(devtools)
+library(DT)
+library(flexdashboard)
+library(highcharter)
+library(knitr)
+library(ggplot2)
+library(rCharts)
+library(readr)
+library(reshape2)
+require(scales)
+library(shiny)
+library(plotly)
+```
+
+```{r carregando_dados,include=FALSE}
+data_filename = "../../_data/senado_dados_2016_aposentados.csv"
+data <- read.csv2(file=data_filename, sep=",", stringsAsFactors=F, header=T, dec=".", encoding = "UTF-8")
+colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
+
+data <- mutate(data, remuneracao_total=remuneracao_basica + vantagens_pessoais + funcao_comissao + gratificacao_natalina + horas_extras + outras_remuneracoes + adicional_periculosidade + adicional_noturno + abono_permanencia + reversao + imposto_de_renda + psss + faltas + diarias + auxilios + auxilio_alimentacao + vantagens_indenizatorias + adicional_ferias + ferias_indenizatorias + licenca_premio)
+data <- mutate(data, remuneracao_total_s=remuneracao_basica_s + vantagens_pessoais_s + funcao_comissao_s + gratificacao_natalina_s + horas_extras_s + outras_remuneracoes_s + adicional_periculosidade_s + adicional_noturno_s + abono_permanencia_s + reversao_s + imposto_de_renda_s + psss_s + faltas_s + diarias_s + auxilios_s + auxilio_alimentacao_s + vantagens_indenizatorias_s + adicional_ferias_s + ferias_indenizatorias_s + licenca_premio_s)
+data <- mutate(data, remuneracao_total_liquida=remuneracao_total+remuneracao_total_s)
+
+#filtrando dados para 2016
+senado_2016 <- data[data$ano==2016,]
+
+# recuperando as especialidades possiveis no Senado
+especialidade = select(senado_2016,especialidade) %>%
+  unique.data.frame() %>% as.vector()
+especialidade=especialidade[[1]][-2] #retirando um valor NaN na segunda posição
+
+aposentados_2016 <- senado_2016[senado_2016$situacao=="APOSENTADO",]
+media_aposentados_2016 <- mean(aposentados_2016$remuneracao_basica)
+valores = c(media_aposentados_2016,14100,1862)
+categorias = c("Ex-Servidores","Ex-Senadores","INSS")
+df = data.frame(categorias, valores)
+df[,2] = sapply(df[,2],round,2) 
+```
+
+Em 13 anos, o salário do serviço público subiu três vezes mais que o privado. Segundo dados da Pesquisa Nacional por Amostra de Domicílio (Pnad) do IBGE, o funcionalismo público ganhava em 2016, em média, 63,8% mais do que o setor privado.
+
+Se considerarmos somente os funcionários da Câmara e Senado essa diferença é ainda maior. Deputados e senadores, por exemplo, ganham 16 vezes mais do que o salário médio do trabalhador brasileiro que é de aproximandamente R$ 2 mil. Somente 1% ou menos da população brasileira ganha o mesmo que deputados e senadores no Brasil!! 
+
+Além de um salário básico de R$ 33.763,00 ao mês, nossos deputados recebem por ano uma ajuda de custo de R$ 16.881,50, auxílio-moradia de R$ 19.300,16 e ainda uma cota para diversas despesas de, em média, R$ 478.611,67. Isso multiplicado pelos 513 deputados da Câmara, custa cerca de R$ 1 bilhão por ano.
+
+Senadores também recebem R$ 33.763 de salário, mais auxílios, verbas, cotas, diárias de viagem. Cada um deles custa, em média R$ 160 mil por mês, ou R$ 155,5 milhões por ano se multiplicarmos pelos 81 senadores. 
+
+Fonte (acessada em 30/07/2017):
+
+[Matéria do Estadão comparando os salários do funcionalismo público e privado](http://economia.estadao.com.br/noticias/geral,em-13-anos-salario-do-servico-publico-subiu-tres-vezes-mais-que-o-privado,10000079369)
+
+## Senado vs Brasil
+
+O Senado é de fato um país diferente. O gráfico abaixo compara a remuneração de várias especialidades de servidores do Senado com o resto do Brasil em 2016. Aqui consideramos somente os servidores ativos. A diferença é bastante grande em todos os casos. Enquanto um profissional de enfermagem com 6 a 8 anos de experiência ganha em média R$ 3.940 no resto do Brasil, por exemplo, no Senado sua remuneração (básica) média em 2016 foi de R$ 19.619. 
+
+```{r comparacao, include=FALSE}
+media_especialidade = function(x) {
+  data_especialidade = filter(senado_2016, situacao=="ATIVO", especialidade==x)
+  media =mean(data_especialidade$remuneracao_basica)
+  if(is.finite(media) && is.numeric(media) && !is.null(media)) {
+    result = c(x,media)
+  }
+}
+
+esp_media = lapply(especialidade, media_especialidade)
+
+# retirando valores nulos
+validos = lapply(esp_media,is.null)
+esp_media=esp_media[validos==FALSE]
+
+nomes_esp = sapply(esp_media,function(x) x[1])
+values_esp = sapply(esp_media,function(x) as.numeric(x[2]))
+publico_privado = data.frame(nomes_esp,values_esp) %>%
+filter(nomes_esp %in% c("ENFERMAGEM","FISIOTERAPIA","ASSISTÊNCIA SOCIAL","NUTRIÇÃO","BIBLIOTECONOMIA","SECRETÁRIO PARLAMENTAR","SEGURANÇA"))
+publico_privado = mutate(publico_privado, salario_brasil=c(3940, 1305,2678.59,2300,2357,2280,2188.62))
+#publico_privado[,2] = sapply(publico_privado[,2],function(x) as.numeric(levels(x))[x])
+#publico_privado[,3] = sapply(publico_privado[,3],as.numeric)
+colnames(publico_privado) = c("Especialidade","Senado","Brasil")
+publico_privado[,1] = sapply(publico_privado[,1],as.character)
+publico_privado[3,1] = "SECRETÁRIO"
+diferenca = mutate(publico_privado, diferenca = floor(Senado/Brasil))
+#publico_privado[,2] = format(publico_privado[,2], decimal.mark = ',')
+#publico_privado[,3] =format(publico_privado[,3], decimal.mark = ',')
+
+new_data = melt(publico_privado,id.vars=c("Especialidade"))
+new_data=arrange(new_data,Especialidade)
+#new_data[,3] = format(new_data[,3],small.mark = '.',decimal.mark = ',')
+new_data[,3] = round(new_data[,3],2)
+```
+
+```{r publico_privado, echo=FALSE, }
+hc <- hchart(new_data, type = "column", hcaes(x = Especialidade, y = value, group = variable)) %>%
+hc_xAxis(title = list(text = "Especialidades")) %>%
+hc_yAxis(title = list(text = "R$")) 
+hc
+```
+
+No gráfico abaixo vemos quantas vezes mais cada especialidade no Senado ganhou em relação ao salário médio de cada especialidade no resto do Brasil. Veja que a especialidade Segurança no Senado ganhou, por exemplo, 16 vezes mais que o salário médio de profissionais de Segurança no resto do Brasil em 2016.
+
+
+```{r diferença}
+q = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=diferenca$Especialidade) %>%
+  hc_add_series(data=diferenca$diferenca, name="Especialidade")
+q
+```
+
+Fontes (acessadas em 30/07/2017):
+
+[Sobre o salário médio de profissionais de Segurança (adotamos R$ 1.305)](http://www.guiadacarreira.com.br/salarios/quanto-ganha-um-seguranca/)
+
+[Sobre o Piso Salarial de Profissionais de Enfermagem ](http://seesp.com.br/pisos/)
+
+[Salários de Profissionais de Enfermagem em 2016 (consideramos R$ 3.940 que corresponde a 6-8 anos de experiência)](http://www.guiadacarreira.com.br/salarios/piso-salarial-enfermeiro/ )
+
+[Sobre salários de Secretário(a)s em 2016 (consideramos R$ 2.678,59 sugerido pelo Catho)](http://www.guiadacarreira.com.br/salarios/quanto-ganha-uma-secretaria/)
+
+[Sobre o piso salarial de Bibliotecomistas (consideramos R$ 2.300)](http://guiadoestudante.abril.com.br/blog/pordentrodasprofissoes/o-que-faz-um-bibliotecario-e-qual-a-diferenca-entre-biblioteconomia-e-arquivologia/)
+
+[Sobre o piso salaria de fisioterapeutas (consideramos R$ 2.188,62)](http://www.pisosalarial.com.br/salarios/piso-salarial-fisioterapeuta/)
+
+[Sobre o salário de Nutricionistas (consideramos R$ 2.357 - a maior média salarial entre 11 estados)]( https://nutrisoft.com.br/conheca-o-piso-salarial-do-nutricionista-e-como-ele-e-definido/)
+
+## Aposentadoria
+
+Em 2016 foram pagas 3.611 aposentadorias para servidores do Senado com um valor médio mensal de R$ 19.940. O gráfico abaixo mostra a diferença entre esse valor, o valor médio de aposentadoria de ex-senadores que é R$ 14.100 (levando em conta os que se aposentam proporcionalmente) e à média do INSS que foi de R$ 1.862 em 2016. 
+
+```{r aposentadorias}
+p = highchart() %>%
+  hc_chart(type="column") %>%
+  hc_xAxis(categories=df$categorias) %>%
+  hc_add_series(data=df$valores, name="Remunerações")
+p
+```
+
