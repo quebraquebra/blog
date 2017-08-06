@@ -75,9 +75,9 @@ teto_constitucional <- 37476.93
 
 ```
 
-Nós coletamos dados sobre `r round(nrow(data)/10^3, 0)` mil pagamentos a servidores da Câmara entre `r ano_min`-`r ano_max`, o que equivale à R$ `r round(sum(data$remuneracao_total)/(10^9), 1)` bilhões. Só a deputados foram pagos R$ `r round(remuneracao_deputados/(10^6), 0)` milhões nesse período, o que corresponde a `r round(remuneracao_deputados/remuneracao_total*100, 1)`% do total. Só em `r ano_max` já foi pago R$ `r round(remuneracao_recente/10^6, 1)` milhões aos servidores da Câmara, sendo `r round(remuneracao_deputados_recente/remuneracao_recente*100, 1)`% desse valor destinado aos deputados.
+Nós coletamos dados sobre `r round(nrow(data)/10^3, 0)` mil pagamentos a servidores da Câmara entre `r ano_min`-`r ano_max`, o que equivale à R$ `r round(sum(data$remuneracao_total)/(10^9), 1)` bilhões. Considerando somente deputados foram pagos R$ `r round(remuneracao_deputados/(10^6), 0)` milhões nesse período, o que corresponde a `r round(remuneracao_deputados/remuneracao_total*100, 1)`% do total. Só em `r ano_max` já foi pago R$ `r round(remuneracao_recente/10^6, 1)` milhões aos servidores da Câmara, sendo `r round(remuneracao_deputados_recente/remuneracao_recente*100, 1)`% desse valor destinado aos deputados.
 
-Na gráfico e tabela abaixo mostramos os dez servidores que receberam as mais elevadas remunerações em algum mês considerando o período de `r ano_min` a `r ano_max`. Na tabela, são mostrados: o nome completo do servidor, cargo, vínculo, mês /ano de referência do pagamento e a remuneração total. Entende-se por **remuneração total a remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens**.
+No gráfico e tabela abaixo mostramos os dez servidores que receberam as mais elevadas remunerações em algum mês considerando o período de `r ano_min` a `r ano_max`. Na tabela são mostrados: o nome completo do servidor, cargo, vínculo, mês /ano de referência do pagamento e a remuneração total. Entende-se por **remuneração total a remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens**.
 
 &nbsp;&nbsp;&nbsp;
 
@@ -93,21 +93,23 @@ q
 
 ```{r top_servidores_todos, echo=FALSE}
 datatable(top_servidores_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
-  formatCurrency('Remuneração Total (R$)', currency = "R$", interval = 3, mark = ",", dec.mark=".")
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ".", dec.mark=",")
 ```
 
 
 &nbsp;&nbsp;&nbsp;
 
-### Deputados que receberam maiores remunerações
+### Deputados com as maiores remunerações em um mês
+
+Abaixo repetimos a análise anterior considerando somente deputados.
+
 ```{r, echo=FALSE}
 remuneracao_top_deputados <- sum(top_deputados_todos$`Remuneração Total (R$)`)
 remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração Total (R$)`)
 ```
 
-&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
 
-* **Quais deputados receberam as maiores remunerações em um só mês?**
 
 ```{r maiores_salarios_deputados}
 q = highchart() %>%
@@ -119,11 +121,11 @@ q
 
 &nbsp;&nbsp;
 
-Abaixo repetimos a análise anterior considerando somente deputados.
+
 
 ```{r top_deputados_todos, echo=FALSE}
 datatable(top_deputados_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
-  formatCurrency('Remuneração Total (R$)', currency = "R$", interval = 3, mark = ",",dec.mark=".")
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ".",dec.mark=",")
 ```
 
 &nbsp;&nbsp;&nbsp;
@@ -141,6 +143,6 @@ q
 
 ```{r top_deputados_recente, echo=FALSE}
 datatable(top_deputados_recente, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
-  formatCurrency('Remuneração Total (R$)', currency = "R$", interval = 3, mark = ",",dec.mark=".")
+  formatCurrency('Remuneração Total (R$)', currency = "", interval = 3, mark = ".",dec.mark=",")
 ```
 

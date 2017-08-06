@@ -1,5 +1,5 @@
 ---
-title: "Quanto que as categorias da Câmara e do Senado recebem ao longo do tempo"
+title: "Remuneração das categorias da Câmara/Senado ao longo do tempo"
 published: yes
 tags:
 - remuneracao
