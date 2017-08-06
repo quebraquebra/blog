@@ -91,7 +91,7 @@ q
 
 &nbsp;&nbsp;
 
-  Os dez servidores que receberam as mais elevadas remunerações, no período de `r ano_min` e `r ano_max`, são apresentados na tabela seguinte. Totalizando R$ `r round(gasto_de_referencia/10^3, 0)` mil, entende-se por remuneração total a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens. Na tabela, é apresentado o nome completo do servidor, o seu respectivo cargo, o seu vínculo, o mês e o ano de referência do pagamento, assim como a remuneração total.
+Na tabela seguinte mostramos os dez servidores que receberam as mais elevadas remunerações em algum mês considerando o período de `r ano_min` a `r ano_max`. Na tabela, são mostrados: o nome completo do servidor, cargo, vínculo, mês e o ano de referência do pagamento e a remuneração total. Entende-se por remuneração total a remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens.
 
 ```{r top_servidores_todos, echo=FALSE}
 datatable(top_servidores_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
@@ -102,7 +102,7 @@ datatable(top_servidores_todos, options = list(paging=F, info=F, searching=F), r
 
 &nbsp;&nbsp;&nbsp;
 
-## Deputados mais Remunerados
+## Deputados que receberam maiores remunerações
 ```{r, echo=FALSE}
 remuneracao_top_deputados <- sum(top_deputados_todos$`Remuneração Total (R$)`)
 remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração Total (R$)`)
@@ -110,7 +110,7 @@ remuneracao_top_deputados_recentes <- sum(top_deputados_recente$`Remuneração T
 
 &nbsp;&nbsp;
 
-* **Quais deputados mais remunerados em um só mês?**
+* **Quais deputados receneram as maiores remunerações em um só mês?**
 
 ```{r maiores_salarios_deputados}
 q = highchart() %>%
@@ -122,7 +122,7 @@ q
 
 &nbsp;&nbsp;
 
-  Entre os anos de `r ano_min` e `r ano_max`, `r round(nrow(todos_deputados)/10^3, 1)` mil deputados foram pagos. Na tabela seguinte, nós destacamos quais dez deputados mais remunerados nesse período, que receberam `r round(remuneracao_top_deputados/10^3, 1)` mil. A remuneração Total corresponde a soma da remuneração fixa, mais vantagens pessoais, mais remuneração eventual, mais abono permanência, menos descontos, mais diárias, mais outros auxílios e vantagens.
+Abaixo repetimos a análise anterior considerando somente deputados.
 
 ```{r top_deputados_todos, echo=FALSE}
 datatable(top_deputados_todos, options = list(paging=F, info=F, searching=F), rownames=FALSE) %>%
