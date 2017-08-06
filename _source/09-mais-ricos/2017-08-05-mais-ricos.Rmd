@@ -58,7 +58,7 @@ p_qr_camara_cargo <- hchart(qc_camara_cargo, type = "bubble", hcaes(x = d, y = k
   hc_xAxis(title = list(text = "Cargos")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_camara_cargo
 ```
 
@@ -69,7 +69,7 @@ p_qr_camara_vinculo <- hchart(qc_camara_vinculo, type = "bubble", hcaes(x = d, y
   hc_xAxis(title = list(text = "Vínculo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_camara_vinculo
 
 ```
@@ -85,7 +85,7 @@ p_qr_senado_cargo <- hchart(qc_senado_cargo, type = "bubble", hcaes(x = d, y = k
   hc_xAxis(title = list(text = "Cargo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_cargo
 ```
 
@@ -96,7 +96,7 @@ p_qr_senado_vinculo <- hchart(qc_senado_vinculo, type = "bubble", hcaes(x = d, y
   hc_xAxis(title = list(text = "Vínculo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_vinculo
 ```
 
@@ -107,6 +107,6 @@ p_qr_senado_especialidade <- hchart(qc_senado_especialidade, type = "bubble", hc
   hc_xAxis(title = list(text = "Especialidade")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Média: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_especialidade
 ```
