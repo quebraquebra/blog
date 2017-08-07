@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Assessores para dar e vender
+title:  Custo de Assessores no Senado
 published: true
 tags: [senado, assessores]
 ---
