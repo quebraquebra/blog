@@ -19,7 +19,7 @@ layout: post
 
 Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  2016, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear 687 alunos de doutorado com bolsa CAPES (R$ 2.200,00) por quatro anos, de acordo com os dados coletados do site da transparência da Câmara.
 
-![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/capes-1.png)
+![]({{https://quebraquebra.github.io/blog}}/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/capes-1.png)
 
 Informação complementar:
 
@@ -34,7 +34,7 @@ Informação complementar:
 
 A licença-prêmio foi um antigo direito garantido por lei que ainda benecifia diversos servidores. Para se ter uma ideia, somente em 2017, os dez servidores mais beneficiados pela Licença-prêmio no Senado, daria para adquirir 27 ambulâncias. Nesse caso, os valores de Licença-prêmio utilizados nessa equação foram os valores brutos (isto é, sem os descontos).
 
-![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/samu-1.png)
+![]({{https://quebraquebra.github.io}}/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/samu-1.png)
 
 Informação complementar:
 
