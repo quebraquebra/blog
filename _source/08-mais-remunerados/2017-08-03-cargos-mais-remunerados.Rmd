@@ -76,6 +76,7 @@ p_mr_camara_vinculo
 * **Cargo**
 
 No Senado, o número total de funcionários chega a marca de 10.000. O cargo de Analista Legislativo é, novamente, o cargo com maior valor acumulado de remunerações pagas. Desta vez com **R$ 3,3 bilhões**.
+
 ```{r mr_senado_cargo, echo=FALSE}
 p_mr_senado_cargo <- hchart(mr_senado_cargo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
   hc_xAxis(title = list(text = "Cargos")) %>%
