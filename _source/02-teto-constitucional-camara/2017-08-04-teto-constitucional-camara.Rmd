@@ -13,6 +13,7 @@ library(DT)
 library(knitr)
 library(readr)
 library(reshape2)
+library(highcharter)
 require(scales)
 ```
 
