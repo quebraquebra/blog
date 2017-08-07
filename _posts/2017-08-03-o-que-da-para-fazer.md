@@ -83,7 +83,7 @@ Informação complementar:
 
 Você tem idiea de quanto o contribuinte tem que desenbolsar a cada **segundo** para manter a remuneração de todos os servidores da Câmara e do Senado? Exatos R$ 81.2 por segundo! Pode parecer pouco, mas por dia chega a R$ 7 MILHÕES! Em 2016, foram R$ 2.6 BILHÕES, isso já descontando de impostos e sem considerar todos os servidores, pois não foi possível localizar no portal da transparência do Senado, os valores de remuneração dos senadores.
 
-![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/brasilia-1.png)
+![](https://quebraquebra.github.io/blog/figure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/brasilia-1.png)
 
 
 
