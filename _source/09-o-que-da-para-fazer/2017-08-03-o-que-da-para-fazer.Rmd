@@ -157,7 +157,7 @@ remuneracao_top_1 <- top_deputados_ano_anterior[1,]$`Remuneração Total (R$)`
 custo <- 120
 ```
 
-Para se ter uma ideia das elevadas remunerações dos servidores da Câmara, o deputado com maior remuneração em  `r ano_max_c-1` foi `r deputado_top_1`, totalizando R$ `r remuneracao_top_1` mil. Isso corresponde a contribuição de `r floor(remuneracao_top_1/(custo*12))` empregados(as) domésticos(as) ao INSS por um ano! Em nossos cálculos, utilizamos R$ 120 como valor de contribuição por empregado, tendo como base um salário de R$ 1.500,00 e 8% de contribuição ao imposto de renda.
+Para se ter uma ideia das elevadas remunerações dos servidores da Câmara, o deputado com maior remuneração em  `r ano_max_c-1` foi `r deputado_top_1`, totalizando R$ `r round(remuneracao_top_1/(10^3), 1)` mil. Isso corresponde a contribuição de `r floor(remuneracao_top_1/(custo*12))` empregados(as) domésticos(as) ao INSS por um ano! Em nossos cálculos, utilizamos R$ 120,00 como valor de contribuição por empregado, tendo como base um salário de R$ 1.500,00 e 8% de contribuição ao imposto de renda.
 
 ```{r empregado, echo=FALSE}
 frink <- image_read("../../_data/imagens/empregado-domestico.jpg")
@@ -179,12 +179,12 @@ custo <- 286.983*(10^6)
 quantidade <- floor(gasto_do_senado_e_camara_ano_anterior/custo)
 ```
 
-Para se ter uma ideia do montante pago em salários na Câmara e no Senado em `r ano_max-1`, já com os descontos de imposto de renda, daria para construir `r quantidade` hospitais equipados com: 400 leitos, sendo 50 Unidades de Tratamento Intensivo (UTI), 30 semi-intensivos, 10 UTIs Pediátricas, 10 UTIs neonatais, 15 Unidades de Cuidados Intensivos Neonatais (Ucin), 40 de maternidade, 125 de enfermaria e 120 de retaguarda. Nessa análise, consideramos o custo de construir um hospital com essa estrutura por R$ `r round(custo/10^6, 1)` MILHÕES, visto que, a construção do Hospital Geral de Cariacica com essa mesma estrutura custou R$ 270 milhões em 2016. Considerando a inflação de 6,29% em 2016, temos o valor de referência para construção de um hospital nesses mesmos parâmetros em 2017 por R$ `r round(custo/10^6, 1)`.
+Para se ter uma ideia do montante pago em salários na Câmara e no Senado em `r ano_max-1`, já com os descontos de imposto de renda, daria para construir `r quantidade` hospitais equipados com: 400 leitos, sendo 50 Unidades de Tratamento Intensivo (UTI), 30 semi-intensivos, 10 UTIs Pediátricas, 10 UTIs neonatais, 15 Unidades de Cuidados Intensivos Neonatais (Ucin), 40 de maternidade, 125 de enfermaria e 120 de retaguarda. Nessa análise, consideramos o custo de construir um hospital com essa estrutura seria de R$ `r round(custo/10^6, 1)` MILHÕES, visto que, a construção do Hospital Geral de Cariacica com essa mesma estrutura custou R$ 270 milhões em 2016. Considerando a inflação de 6,29% em 2016, temos o valor de referência para construção de um hospital nesses mesmos parâmetros em 2017 por R$ `r round(custo/10^6, 1)` milhões.
 
 ```{r hospital, echo=FALSE}
 frink <- image_read("../../_data/imagens/hospital.jpg")
-texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_max-1, "\nDARIA PARA CONSTRUIR", quantidade, "HOSPITAIS!")
-image <- image_annotate(frink, texto, size = 55, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+texto <- paste("A FOLHA DE PAGAMENTO DA\nCÂMARA E DO SENADO\nEM", ano_max-1, "DARIA PARA\nCONSTRUIR", quantidade, "HOSPITAIS!")
+image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
@@ -204,7 +204,7 @@ Informação complementar:
 gastos_ano <- round(gasto_do_senado_e_camara_ano_anterior/10^9, 1)
 gastos_dia <-  round(gasto_do_senado_e_camara_ano_anterior/(365*10^6), 1)
 gastos_hora <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*10^3), 1)
-gastos_minutos <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*10^3), 1)
+gastos_minuto <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*10^3), 1)
 gastos_segundo <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*60), 1)
 ```
 
@@ -227,15 +227,15 @@ plot(image)
 
 * **A folha de pagamento do Senado para aposentados é mesmo alta?**
 ```{r}
+custo <- 110*10^6
 gastos_aposentados <- sum(aposentados_senado_ano_anterior$remuneracao_total_liquida)
 anos_neymar <- floor(gastos_aposentados/custo)
 ```
 
-Recentemente noticiou a milionária contratação do jogador de futebol Neymar, surpreendendo várias pessoas pelo enorme salário anual de aproxidamente R$ 110 milhões. Entretanto, esse valor parece pequeno quando comparado ao pagamento do Senado aos aposentados, considerando a folha de pagamento de `r ano_max-1`, só o que foi pago a aposentados daria para contratar o Neymar por `r anos_neymar` anos! Ou seja, o Senado efetuou o pagamento de R$ `r round(gastos_aposentados, 1)` MILHÕES em `r ano_max-1` para aposentados.
+Recentemente noticiou a milionária contratação do jogador de futebol Neymar, surpreendendo várias pessoas pelo enorme salário anual de aproxidamente R$ 110 milhões. Entretanto, esse valor parece pequeno quando comparado ao pagamento do Senado aos aposentados, considerando a folha de pagamento de `r ano_max-1`, só o que foi pago a aposentados daria para contratar o Neymar por `r anos_neymar` anos! Ou seja, o Senado efetuou o pagamento de R$ `r round(gastos_aposentados/(10^9), 1)` BILHÕES em `r ano_max-1` para aposentados.
 
 ```{r neymar, echo=FALSE}
 frink <- image_read("../../_data/imagens/neymar.jpeg")
-custo <- 110*10^6
 texto <- paste("EM", ano_max-1,", SÓ A FOLHA DE PAGAMENTO\nPARA APOSENTADOS DO SENADO,\nDARIA PARA CONTRATAR\nNEYMAR POR", anos_neymar, "ANOS!")
 image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", location='+0+80', font='../../_data/fontes/Impact.ttf')
 plot(image)
