@@ -109,7 +109,7 @@ gasto_do_senado_e_camara_ano_anterior <-sum(todos_servidores_ano_anterior_c$remu
 custo <- 2200
 ```
 
-Considerando a remuneração líquida de todos os deputados em  `r ano_max_c-1`, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear `r floor(remuneracao_deputados_recente/custo)` alunos de doutorado com bolsa CAPES (R$ 2.200,00) por `r floor(remuneracao_deputados_recente/(custo*48))` anos.
+Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  `r ano_max_c-1`, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear `r floor(remuneracao_deputados_recente/custo)` alunos de doutorado com bolsa CAPES (R$ 2.200,00) por `r floor(remuneracao_deputados_recente/(custo*48))` anos, de acordo com os dados coletados do site da transparência da Câmara.
 
 ```{r capes, echo=FALSE}
 frink <- image_read("../../_data/imagens/capes.jpg")
@@ -118,17 +118,33 @@ image <- image_annotate(frink, texto, size = 30, location="+0+85", gravity = "ce
 plot(image)
 ```
 
-[Valores de Bolsas](http://www.capes.gov.br/bolsas/valores-de-bolsas)
+Informação complementar:
+
+[Valores de Bolsas (acessado em 7 de agosto de 2017)](http://www.capes.gov.br/bolsas/valores-de-bolsas)
+
+
+
 
 * **Quanto vale a Licença-Prêmio de apenas dez servidores?**
 
+```{r}
+custo <- 150000
+```
+
+A licença-prêmio é um antigo direito garantido por lei que ainda benecifia diversos servidores do Senado. Para se ter uma ideia, somente em `r ano_max`, os dez servidores mais beneficiados pela Licença-prêmio daria para adquirir `r floor(gastos_licenca_premio/custo)` ambulâncias.
+
 ```{r samu, echo=FALSE}
 frink <- image_read("../../_data/imagens/samu.jpg")
-custo <- 150000
 texto <- paste("O PAGAMENTO DE LICENÇA-PRÊMIO\nAOS DEZ SERVIDORES MAIS\nBENEFICIADOS EM", ano_max,"DARIA PARA\nADQUIRIR", floor(gastos_licenca_premio/custo), "AMBULÂNCIAS!")
 image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+Informação complementar:
+
+[Dezenove ambulâncias do Samu estão paradas em galpão (acessado em 7 de agosto de 2017)](http://www.otempo.com.br/cidades/dezenove-ambul%C3%A2ncias-do-samu-est%C3%A3o-paradas-em-galp%C3%A3o-1.1436254)
+
+[Sindilegis solicita ao Senado e TCU conversão da licença-prêmio não usufruída em pecúnia (acessado em 7 de agosto de 2017)](https://sindilegis.org.br/noticias/sindilegis-solicita-ao-senado-e-tcu-conversao-da-licenaa-pramio-nao-usufrua-da-em-pecania/388)
 
 
 * **O que um deputado tem a ver com empregado(as) domésticos(as)?**
@@ -141,15 +157,30 @@ image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor
 plot(image)
 ```
 
+Informação complementar:
+
+[Percentuais da contribuição previdenciária (INSS) de patrões e empregados domésticos (acessado em 7 de agosto de 2017)](https://www.domesticalegal.com.br/utilidades/tabela-de-inss/)
+
+
+
+
 * **Quantos hospitais dariam para construir?**
 
 ```{r hospital, echo=FALSE}
 frink <- image_read("../../_data/imagens/hospital.jpg")
-custo <- 8525928.52
+custo <- 286.983*10^6
 texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_max-1, "\nDARIA PARA CONSTRUIR", floor(gasto_do_senado_e_camara_ano_anterior/custo), "HOSPITAIS!")
 image <- image_annotate(frink, texto, size = 55, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+Informação complementar:
+
+[Hospital de Cariacica vai ter edital lançado pelo governo do ES (acessado em 7 de agosto de 2017)](http://g1.globo.com/espirito-santo/noticia/2016/08/hospital-de-cariacica-vai-ter-edital-lancado-pelo-governo-do-es.html)
+
+[Inflação oficial fecha 2016 em 6,29%, diz IBGE (acessado em 7 de agosto de 2017)](http://g1.globo.com/economia/noticia/inflacao-oficial-fecha-2016-em-629-diz-ibge.ghtml)
+
+
 
 * **Qual a vazão de pagamento da Câmara e do Senado por segundo?**
 
@@ -164,6 +195,10 @@ image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor
 plot(image)
 ```
 
+
+
+
+
 * **A folha de pagamento do Senado para aposentados é mesmo alta?**
 
 ```{r neymar, echo=FALSE}
@@ -173,3 +208,7 @@ texto <- paste("EM", ano_max-1,", SÓ A FOLHA DE PAGAMENTO\nPARA APOSENTADOS DO 
 image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", location='+0+80', font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+Informação complementar:
+
+[‘Fair Play’ financeiro complica contratação de Neymar pelo PSG (acessado em 7 de agosto de 2017)](https://brasil.elpais.com/brasil/2017/07/25/deportes/1501004224_762708.html)
