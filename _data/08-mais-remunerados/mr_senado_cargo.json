@@ -1,0 +1,38 @@
+[
+  {
+    "area": "ADVOGADO",
+    "value": 42.1726
+  },
+  {
+    "area": "ANALISTA LEGISLATIVO",
+    "value": 3330.6323
+  },
+  {
+    "area": "AUXILIAR LEGISLATIVO",
+    "value": 77.2597
+  },
+  {
+    "area": "CARGO EM COMISSÃO",
+    "value": 773.6747
+  },
+  {
+    "area": "CARGO ISOLADO",
+    "value": 6.8625
+  },
+  {
+    "area": "CONSULTOR LEGISLATIVO",
+    "value": 511.0853
+  },
+  {
+    "area": "IPC ",
+    "value": 12.4785
+  },
+  {
+    "area": "SECRETÁRIO PARLAMENTAR",
+    "value": 7.1072
+  },
+  {
+    "area": "TECNICO LEGISLATIVO",
+    "value": 3119.1932
+  }
+]

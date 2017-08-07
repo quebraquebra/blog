@@ -96,8 +96,16 @@ p_qr_senado_vinculo
 
 * **Especialidade**
 
+```{r setup, include=FALSE}
+#pegando top 5
+qc_senado_especialidade_top5 <- qc_senado_especialidade %>%
+  group_by(d) %>%
+  top_n(5)
+
+```
+
 ```{r qr_senado_especialidade, echo=FALSE}
-p_qr_senado_especialidade <- hchart(qc_senado_especialidade, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
+p_qr_senado_especialidade <- hchart(qc_senado_especialidade_top5, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
   hc_xAxis(title = list(text = "Especialidade")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")

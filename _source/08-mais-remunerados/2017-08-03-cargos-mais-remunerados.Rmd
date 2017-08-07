@@ -28,11 +28,6 @@ mr_senado_nome <- read_csv(file="../../_data/08-mais-remunerados/mr_senado_nome.
 mr_senado_cargo <- read_csv(file="../../_data/08-mais-remunerados/mr_senado_cargo.csv", col_names=T)
 mr_senado_especialidade <- read_csv(file="../../_data/08-mais-remunerados/mr_senado_especialidade.csv", col_names=T)
 mr_senado_vinculo <- read_csv(file="../../_data/08-mais-remunerados/mr_senado_vinculo.csv", col_names=T)
-qc_camara_cargo <- read_csv(file="../../_data/08-mais-remunerados/qc_camara_cargo.csv",  col_names=T)
-qc_camara_vinculo <- read_csv(file="../../_data/08-mais-remunerados/qc_camara_vinculo.csv", col_names=T)
-qc_senado_cargo <- read_csv(file="../../_data/08-mais-remunerados/qc_senado_cargo.csv",col_names=T)
-qc_senado_especialidade <- read_csv(file="../../_data/08-mais-remunerados/qc_senado_especialidade.csv", col_names=T)
-qc_senado_vinculo <- read_csv(file="../../_data/08-mais-remunerados/qc_senado_vinculo.csv", col_names=T)
 
 options(scipen=2000, OutDec= ",")
 ```
