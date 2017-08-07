@@ -1,7 +1,11 @@
+---
+title: "O que dá para fazer com tanto dinheiro assim?"
+published: yes
+tags:
+- remuneracao
+- camara
+- senado
 layout: post
-title:  O que dá para fazer com tanto dinheiro assim?
-published: true
-tags: [câmara, senado, remuneração]
 ---
 
 ```{r setup, include=FALSE}
@@ -31,8 +35,7 @@ topSalarios <- function(salariosAgregados, column_ref, keeps, size) {
 #SENADO
 #######################################################################################################
 data_filename = "../../_data/dados_senado.csv"
-
-data <- read_csv(file=data_filename, col_names=FALSE)
+data <- read.csv2(file=data_filename, sep=",", header=FALSE, stringsAsFactors=FALSE, na.strings="unknown", dec=".", encoding = "UTF-8")
 colnames(data) <-  c("id","nome","vinculo","situacao","ano_de_admissao","cargo","padrao","especialidade","mes","ano","remuneracao_basica","vantagens_pessoais","funcao_comissao","gratificacao_natalina","horas_extras","outras_remuneracoes","adicional_periculosidade","adicional_noturno","abono_permanencia","reversao","imposto_de_renda","psss","faltas","remuneracao_apos_descontos","diarias","auxilios","auxilio_alimentacao","vantagens_indenizatorias","adicional_ferias","ferias_indenizatorias","licenca_premio","remuneracao_basica_s","vantagens_pessoais_s","funcao_comissao_s","gratificacao_natalina_s","horas_extras_s","outras_remuneracoes_s","adicional_periculosidade_s","adicional_noturno_s","abono_permanencia_s","reversao_s","imposto_de_renda_s","psss_s","faltas_s","remuneracao_apos_descontos_s","diarias_s","auxilios_s","auxilio_alimentacao_s","vantagens_indenizatorias_s","adicional_ferias_s","ferias_indenizatorias_s","licenca_premio_s")
 
 data <- mutate(data, remuneracao_total=remuneracao_basica + vantagens_pessoais + funcao_comissao + gratificacao_natalina + horas_extras + outras_remuneracoes + abono_permanencia + reversao + imposto_de_renda + psss + faltas + diarias + auxilios + vantagens_indenizatorias)
@@ -101,45 +104,45 @@ gasto_do_senado_e_camara_ano_anterior <-sum(todos_servidores_ano_anterior_c$remu
 ```
 
 ```{r capes, echo=FALSE}
-frink <- image_read("../../_data/imagens/capes.jpeg")
+frink <- image_read("../../_data/imagens/capes.jpg")
 custo <- 2200
 texto <- paste("A REMUNERAÇÃO DE TODOS OS\nDEPUTADOS EM", ano_max_c, "SERIA O\nSUFICIENTE PARA PAGAR", floor(remuneracao_deputados_recente/(custo*48)), "ALUNOS\nDE DOUTORADO POR 4 ANOS!")
-image <- image_annotate(frink, texto, size = 50, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 30, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
 ```{r samu, echo=FALSE}
-frink <- image_read("../../_data/imagens/samu2.jpg")
+frink <- image_read("../../_data/imagens/samu.jpg")
 custo <- 150000
 texto <- paste("O PAGAMENTO DE LICENÇA-PRÊMIO\nAOS DEZ SERVIDORES MAIS\nBENEFICIADOS EM", ano_max,"DARIA PARA\nADQUIRIR", floor(gastos_licenca_premio/custo), "AMBULÂNCIAS!")
-image <- image_annotate(frink, texto, size = 50, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
 ```{r empregado, echo=FALSE}
-frink <- image_read("../../_data/imagens/empregado-domestico2.jpg")
+frink <- image_read("../../_data/imagens/empregado-domestico.jpg")
 custo <- 120
 texto <- paste("A REMUNERAÇÃO TOTAL DO DEPUTADO\n", top_deputados_ano_anterior[1,]$Nome, "\nNO ANO DE", ano_max-1, "É EQUIVALENTE A\nCONTRIBUIÇÃO DE", floor(top_deputados_ano_anterior[1,]$`Remuneração Total (R$)`/(custo*12)), "EMPREGADOS(AS)\nDOMÉSTICOS(AS) AO INSS POR UM ANO!")
-image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
 ```{r hospital, echo=FALSE}
-frink <- image_read("../../_data/imagens/hospital2.jpg")
+frink <- image_read("../../_data/imagens/hospital.jpg")
 custo <- 8525928.52
 texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_max-1, "\nDARIA PARA CONSTRUIR", floor(gasto_do_senado_e_camara_ano_anterior/custo), "HOSPITAIS!")
-image <- image_annotate(frink, texto, size = 50, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 55, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
 ```{r brasilia, echo=FALSE}
-frink <- image_read("../../_data/imagens/brasilia2.jpg")
-texto <- paste("EM", ano_max-1, ", A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO FOI DE R$", round(gasto_do_senado_e_camara_ano_anterior/10^9, 1), "BILHÕES!\n")
+frink <- image_read("../../_data/imagens/brasilia.jpg")
+texto <- paste("EM", ano_max-1, ", A FOLHA DE PAGAMENTO DA\nCÂMARA E DO SENADO FOI DE\nR$", round(gasto_do_senado_e_camara_ano_anterior/10^9, 1), "BILHÕES!\n")
 texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*10^6), 1), "MILHÕES por dia!" )
 texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*10^3), 1), "MIL por hora!" )
 texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*10^3), 1), "MIL por minuto!" )
 texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*60), 1), "por segundo!" )
-image <- image_annotate(frink, texto, size = 50, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
@@ -147,6 +150,6 @@ plot(image)
 frink <- image_read("../../_data/imagens/neymar.jpeg")
 custo <- 110*10^6
 texto <- paste("EM", ano_max-1,", SÓ A FOLHA DE PAGAMENTO\nPARA APOSENTADOS DO SENADO,\nDARIA PARA CONTRATAR\nNEYMAR POR", floor(sum(aposentados_senado_ano_anterior$remuneracao_total_liquida)/custo), "ANOS!")
-image <- image_annotate(frink, texto, size = 30, gravity = "center", strokecolor="black", color = "white", location='+0+80', font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", location='+0+80', font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
