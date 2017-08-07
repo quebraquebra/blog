@@ -34,7 +34,7 @@ Informação complementar:
 
 A licença-prêmio foi um antigo direito garantido por lei que ainda benecifia diversos servidores. Para se ter uma ideia, somente em 2017, os dez servidores mais beneficiados pela Licença-prêmio no Senado, daria para adquirir 27 ambulâncias. Nesse caso, os valores de Licença-prêmio utilizados nessa equação foram os valores brutos (isto é, sem os descontos).
 
-![]({{https://quebraquebra.github.io}}/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/samu-1.png)
+![](https://quebraquebra.github.io/blog/figure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/samu-1.png)
 
 Informação complementar:
 
