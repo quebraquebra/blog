@@ -10,16 +10,12 @@ knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
 library(dplyr)
 library(devtools)
 library(DT)
-library(flexdashboard)
 library(highcharter)
 library(knitr)
-library(ggplot2)
 library(rCharts)
 library(readr)
 library(reshape2)
 require(scales)
-library(shiny)
-library(plotly)
 ```
 
 
