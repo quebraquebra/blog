@@ -109,7 +109,7 @@ gasto_do_senado_e_camara_ano_anterior <-sum(todos_servidores_ano_anterior_c$remu
 custo <- 2200
 ```
 
-Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  `r ano_max_c-1`, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear `r floor(remuneracao_deputados_recente/custo)` alunos de doutorado com bolsa CAPES (R$ 2.200,00) por `r floor(remuneracao_deputados_recente/(custo*48))` anos, de acordo com os dados coletados do site da transparência da Câmara.
+Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  `r ano_max_c-1`, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear `r floor(remuneracao_deputados_recente/(custo*48))` alunos de doutorado com bolsa CAPES (R$ 2.200,00) por quatro anos, de acordo com os dados coletados do site da transparência da Câmara.
 
 ```{r capes, echo=FALSE}
 frink <- image_read("../../_data/imagens/capes.jpg")
@@ -131,7 +131,7 @@ Informação complementar:
 custo <- 150000
 ```
 
-A licença-prêmio é um antigo direito garantido por lei que ainda benecifia diversos servidores do Senado. Para se ter uma ideia, somente em `r ano_max`, os dez servidores mais beneficiados pela Licença-prêmio daria para adquirir `r floor(gastos_licenca_premio/custo)` ambulâncias.
+A licença-prêmio foi um antigo direito garantido por lei que ainda benecifia diversos servidores. Para se ter uma ideia, somente em `r ano_max`, os dez servidores mais beneficiados pela Licença-prêmio no Senado, daria para adquirir `r floor(gastos_licenca_premio/custo)` ambulâncias. Nesse caso, os valores de Licença-prêmio utilizados nessa equação foram os valores brutos (isto é, sem os descontos).
 
 ```{r samu, echo=FALSE}
 frink <- image_read("../../_data/imagens/samu.jpg")
@@ -147,12 +147,21 @@ Informação complementar:
 [Sindilegis solicita ao Senado e TCU conversão da licença-prêmio não usufruída em pecúnia (acessado em 7 de agosto de 2017)](https://sindilegis.org.br/noticias/sindilegis-solicita-ao-senado-e-tcu-conversao-da-licenaa-pramio-nao-usufrua-da-em-pecania/388)
 
 
+
+
 * **O que um deputado tem a ver com empregado(as) domésticos(as)?**
+
+```{r}
+deputado_top_1 <- top_deputados_ano_anterior[1,]$Nome
+remuneracao_top_1 <- top_deputados_ano_anterior[1,]$`Remuneração Total (R$)`
+custo <- 120
+```
+
+Para se ter uma ideia das elevadas remunerações dos servidores da Câmara, o deputado com maior remuneração em  `r ano_max_c-1` foi `r deputado_top_1`, totalizando R$ `r remuneracao_top_1` mil. Isso corresponde a contribuição de `r floor(remuneracao_top_1/(custo*12))` empregados(as) domésticos(as) ao INSS por um ano! Em nossos cálculos, utilizamos R$ 120 como valor de contribuição por empregado, tendo como base um salário de R$ 1.500,00 e 8% de contribuição ao imposto de renda.
 
 ```{r empregado, echo=FALSE}
 frink <- image_read("../../_data/imagens/empregado-domestico.jpg")
-custo <- 120
-texto <- paste("A REMUNERAÇÃO TOTAL DO DEPUTADO\n", top_deputados_ano_anterior[1,]$Nome, "\nNO ANO DE", ano_max-1, "É EQUIVALENTE A\nCONTRIBUIÇÃO DE", floor(top_deputados_ano_anterior[1,]$`Remuneração Total (R$)`/(custo*12)), "EMPREGADOS(AS)\nDOMÉSTICOS(AS) AO INSS POR UM ANO!")
+texto <- paste("A REMUNERAÇÃO TOTAL DO DEPUTADO\n", deputado_top_1, "\nNO ANO DE", ano_max_c-1, "É EQUIVALENTE A\nCONTRIBUIÇÃO DE", floor(remuneracao_top_1/(custo*12)), "EMPREGADOS(AS)\nDOMÉSTICOS(AS) AO INSS POR UM ANO!")
 image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
@@ -165,11 +174,16 @@ Informação complementar:
 
 
 * **Quantos hospitais dariam para construir?**
+```{r}
+custo <- 286.983*(10^6)
+quantidade <- floor(gasto_do_senado_e_camara_ano_anterior/custo)
+```
+
+Para se ter uma ideia do montante pago em salários na Câmara e no Senado em `r ano_max-1`, já com os descontos de imposto de renda, daria para construir `r quantidade` hospitais equipados com: 400 leitos, sendo 50 Unidades de Tratamento Intensivo (UTI), 30 semi-intensivos, 10 UTIs Pediátricas, 10 UTIs neonatais, 15 Unidades de Cuidados Intensivos Neonatais (Ucin), 40 de maternidade, 125 de enfermaria e 120 de retaguarda. Nessa análise, consideramos o custo de construir um hospital com essa estrutura por R$ `r round(custo/10^6, 1)` MILHÕES, visto que, a construção do Hospital Geral de Cariacica com essa mesma estrutura custou R$ 270 milhões em 2016. Considerando a inflação de 6,29% em 2016, temos o valor de referência para construção de um hospital nesses mesmos parâmetros em 2017 por R$ `r round(custo/10^6, 1)`.
 
 ```{r hospital, echo=FALSE}
 frink <- image_read("../../_data/imagens/hospital.jpg")
-custo <- 286.983*10^6
-texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_max-1, "\nDARIA PARA CONSTRUIR", floor(gasto_do_senado_e_camara_ano_anterior/custo), "HOSPITAIS!")
+texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_max-1, "\nDARIA PARA CONSTRUIR", quantidade, "HOSPITAIS!")
 image <- image_annotate(frink, texto, size = 55, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
@@ -182,15 +196,27 @@ Informação complementar:
 
 
 
+
+
 * **Qual a vazão de pagamento da Câmara e do Senado por segundo?**
+
+```{r}
+gastos_ano <- round(gasto_do_senado_e_camara_ano_anterior/10^9, 1)
+gastos_dia <-  round(gasto_do_senado_e_camara_ano_anterior/(365*10^6), 1)
+gastos_hora <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*10^3), 1)
+gastos_minutos <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*10^3), 1)
+gastos_segundo <- round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*60), 1)
+```
+
+Você tem idiea de quanto o contribuinte tem que desenbolsar a cada **segundo** para manter a remuneração de todos os servidores da Câmara e do Senado? Exatos R$ `r gastos_segundo` por segundo! Pode parecer pouco, mas por dia chega a R$ `r gastos_dia` MILHÕES! Em `r ano_max-1`, foram R$ `r gastos_ano` BILHÕES, isso já descontando de impostos e sem considerar todos os servidores, pois não foi possível localizar no portal da transparência do Senado, os valores de remuneração dos senadores.
 
 ```{r brasilia, echo=FALSE}
 frink <- image_read("../../_data/imagens/brasilia.jpg")
-texto <- paste("EM", ano_max-1, ", A FOLHA DE PAGAMENTO DA\nCÂMARA E DO SENADO FOI DE\nR$", round(gasto_do_senado_e_camara_ano_anterior/10^9, 1), "BILHÕES!\n")
-texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*10^6), 1), "MILHÕES por dia!" )
-texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*10^3), 1), "MIL por hora!" )
-texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*10^3), 1), "MIL por minuto!" )
-texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*24*60*60), 1), "por segundo!" )
+texto <- paste("EM", ano_max-1, ", A FOLHA DE PAGAMENTO DA\nCÂMARA E DO SENADO FOI DE\nR$", gastos_ano, "BILHÕES!\n")
+texto <- paste(texto, "\nR$", gastos_dia, "MILHÕES por dia!" )
+texto <- paste(texto, "\nR$", gastos_hora, "MIL por hora!" )
+texto <- paste(texto, "\nR$", gastos_minuto, "MIL por minuto!" )
+texto <- paste(texto, "\nR$", gastos_segundo, "por segundo!" )
 image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
@@ -200,11 +226,17 @@ plot(image)
 
 
 * **A folha de pagamento do Senado para aposentados é mesmo alta?**
+```{r}
+gastos_aposentados <- sum(aposentados_senado_ano_anterior$remuneracao_total_liquida)
+anos_neymar <- floor(gastos_aposentados/custo)
+```
+
+Recentemente noticiou a milionária contratação do jogador de futebol Neymar, surpreendendo várias pessoas pelo enorme salário anual de aproxidamente R$ 110 milhões. Entretanto, esse valor parece pequeno quando comparado ao pagamento do Senado aos aposentados, considerando a folha de pagamento de `r ano_max-1`, só o que foi pago a aposentados daria para contratar o Neymar por `r anos_neymar` anos! Ou seja, o Senado efetuou o pagamento de R$ `r round(gastos_aposentados, 1)` MILHÕES em `r ano_max-1` para aposentados.
 
 ```{r neymar, echo=FALSE}
 frink <- image_read("../../_data/imagens/neymar.jpeg")
 custo <- 110*10^6
-texto <- paste("EM", ano_max-1,", SÓ A FOLHA DE PAGAMENTO\nPARA APOSENTADOS DO SENADO,\nDARIA PARA CONTRATAR\nNEYMAR POR", floor(sum(aposentados_senado_ano_anterior$remuneracao_total_liquida)/custo), "ANOS!")
+texto <- paste("EM", ano_max-1,", SÓ A FOLHA DE PAGAMENTO\nPARA APOSENTADOS DO SENADO,\nDARIA PARA CONTRATAR\nNEYMAR POR", anos_neymar, "ANOS!")
 image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", location='+0+80', font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
