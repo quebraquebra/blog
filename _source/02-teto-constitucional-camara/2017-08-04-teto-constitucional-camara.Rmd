@@ -11,15 +11,11 @@ library(dplyr)
 library(devtools)
 library(DT)
 library(flexdashboard)
-library(highcharter)
 library(knitr)
-library(ggplot2)
 library(rCharts)
 library(readr)
 library(reshape2)
 require(scales)
-library(shiny)
-library(plotly)
 ```
 
 
@@ -27,7 +23,7 @@ library(plotly)
 #knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE)
 
 data_filename = "../../_data/camara_dados.txt"
-data <- read.csv2(file=data_filename, sep=",", header=FALSE, stringsAsFactors=FALSE, na.strings="unknown", dec=".", encoding = "UTF-8")
+data <- read_csv(file=data_filename, col_names=FALSE)
 colnames(data) <-  c("mes","ano","cargo","vinculo","nome","remuneracao_fixa","vantagens_pessoais","remuneracao_eventual","abono_permanencia","descontos","diarias","outros_auxilios","outras_vantagens")
 
 data <- mutate(data, remuneracao_total=remuneracao_fixa+vantagens_pessoais+remuneracao_eventual+abono_permanencia-descontos+diarias+outros_auxilios+outras_vantagens)
@@ -87,7 +83,7 @@ servidores_acima_teto <- data[data$remuneracao_total > teto_constitucional, ]
 
 ### Deputados
 
-O teto constitucional definido pelo STF é de R$ `r teto_constitucional`, entretanto, observamos que `r nrow(deputados_acima_teto)` deputados receberam acima desse valor entre `r ano_min` e `r ano_max`. Só em `r ano_max`, por exemplo, foram `r nrow(deputados_acima_teto_recente)` deputados. O gráfico abaixo mostra quantas vezes cada deputado que já ultrapassou o teto repetiu essa proeza em `r ano_max` considerando a remuneração total líquida, ou seja, após os descontos dos impostos.
+O teto constitucional definido pelo STF é de R$ `r format(teto_constitucional,,big.mark = '.',decimal.mark = ',')`, entretanto, observamos que `r nrow(deputados_acima_teto)` deputados receberam acima desse valor entre `r ano_min` e `r ano_max`. Só em `r ano_max`, por exemplo, foram `r nrow(deputados_acima_teto_recente)` deputados que receberam acima do teto em algum mês. O gráfico abaixo mostra quantas vezes cada deputado que já ultrapassou o teto repetiu essa proeza em `r ano_max` considerando a remuneração total líquida, ou seja, após os descontos dos impostos. Como remuneração consideramos: **remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens**.
 
 ```{r plot_deputados_acima_teto, echo=FALSE}
 title <- paste("Deputados que Ultrapassaram o Teto em ", ano_max)

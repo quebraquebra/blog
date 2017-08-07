@@ -10,16 +10,12 @@ knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE, fig.cap = "")
 library(dplyr)
 library(devtools)
 library(DT)
-library(flexdashboard)
 library(highcharter)
 library(knitr)
-library(ggplot2)
 library(rCharts)
 library(readr)
 library(reshape2)
 require(scales)
-library(shiny)
-library(plotly)
 ```
 
 
@@ -27,7 +23,7 @@ library(plotly)
 #knitr::opts_chunk$set(screenshot.force = FALSE, echo = FALSE)
 
 data_filename = "../../_data/camara_dados.txt"
-data <- read.csv2(file=data_filename, sep=",", header=FALSE, stringsAsFactors=FALSE, na.strings="unknown", dec=".", encoding = "UTF-8")
+data <- read_csv(file=data_filename, col_names=FALSE)
 colnames(data) <-  c("mes","ano","cargo","vinculo","nome","remuneracao_fixa","vantagens_pessoais","remuneracao_eventual","abono_permanencia","descontos","diarias","outros_auxilios","outras_vantagens")
 
 data <- mutate(data, remuneracao_total=remuneracao_fixa+vantagens_pessoais+remuneracao_eventual+abono_permanencia-descontos+diarias+outros_auxilios+outras_vantagens)
