@@ -103,13 +103,18 @@ todos_servidores_ano_anterior_c <- data_c[data_c$ano==ano_max_c-1,]
 gasto_do_senado_e_camara_ano_anterior <-sum(todos_servidores_ano_anterior_c$remuneracao_total)+sum(todos_servidores_ano_anterior$remuneracao_total_liquida)
 ```
 
+* **Quanto vale a remuneração dos deputados?**
+
 ```{r capes, echo=FALSE}
 frink <- image_read("../../_data/imagens/capes.jpg")
 custo <- 2200
 texto <- paste("A REMUNERAÇÃO DE TODOS OS\nDEPUTADOS EM", ano_max_c, "SERIA O\nSUFICIENTE PARA PAGAR", floor(remuneracao_deputados_recente/(custo*48)), "ALUNOS\nDE DOUTORADO POR 4 ANOS!")
-image <- image_annotate(frink, texto, size = 30, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
+image <- image_annotate(frink, texto, size = 30, location="+0+85", gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+
+* **Quanto vale a Licença-Prêmio de apenas dez servidores?**
 
 ```{r samu, echo=FALSE}
 frink <- image_read("../../_data/imagens/samu.jpg")
@@ -119,6 +124,9 @@ image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor
 plot(image)
 ```
 
+
+* **O que um deputado tem a ver com empregado(as) domésticos(as)?**
+
 ```{r empregado, echo=FALSE}
 frink <- image_read("../../_data/imagens/empregado-domestico.jpg")
 custo <- 120
@@ -127,6 +135,8 @@ image <- image_annotate(frink, texto, size = 35, gravity = "center", strokecolor
 plot(image)
 ```
 
+* **Quantos hospitais dariam para construir?**
+
 ```{r hospital, echo=FALSE}
 frink <- image_read("../../_data/imagens/hospital.jpg")
 custo <- 8525928.52
@@ -134,6 +144,8 @@ texto <- paste("A FOLHA DE PAGAMENTO DA CÂMARA\nE DO SENADO PARA O ANO", ano_ma
 image <- image_annotate(frink, texto, size = 55, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+* **Qual a vazão de pagamento da Câmara e do Senado por segundo?**
 
 ```{r brasilia, echo=FALSE}
 frink <- image_read("../../_data/imagens/brasilia.jpg")
@@ -145,6 +157,8 @@ texto <- paste(texto, "\nR$", round(gasto_do_senado_e_camara_ano_anterior/(365*2
 image <- image_annotate(frink, texto, size = 40, gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
+
+* **A folha de pagamento do Senado para aposentados é mesmo alta?**
 
 ```{r neymar, echo=FALSE}
 frink <- image_read("../../_data/imagens/neymar.jpeg")
