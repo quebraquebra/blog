@@ -82,7 +82,7 @@ servidores_acima_teto <- data[data$remuneracao_total > teto_constitucional, ]
 
 ### Deputados
 
-O teto constitucional definido pelo STF é de R$ `r format(teto_constitucional,,big.mark = '.',decimal.mark = ',')`, entretanto, observamos que `r nrow(deputados_acima_teto)` deputados receberam acima desse valor entre `r ano_min` e `r ano_max`. Só em `r ano_max`, por exemplo, foram `r nrow(deputados_acima_teto_recente)` deputados que receberam acima do teto em algum mês. O gráfico abaixo mostra quantas vezes cada deputado que já ultrapassou o teto repetiu essa proeza em `r ano_max` considerando a remuneração total líquida, ou seja, após os descontos dos impostos. Como remuneração consideramos: **remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens**.
+O teto constitucional definido pelo STF é de R$ `r format(teto_constitucional,,big.mark = '.',decimal.mark = ',')`, entretanto, observamos que `r nrow(deputados_acima_teto)` deputados receberam acima desse valor pelo menos uma vez entre `r ano_min` e `r ano_max`. Só em `r ano_max`, por exemplo, foram `r nrow(deputados_acima_teto_recente)` deputados que receberam acima do teto pelo menos uma vez. O gráfico abaixo mostra quantas vezes cada deputado que já ultrapassou o teto repetiu essa proeza em `r ano_max` considerando a remuneração total líquida, ou seja, após os descontos dos impostos. De forma mais específica, como remuneração consideramos: **remuneração básica + vantagens pessoais + remuneração eventual + abono permanência - descontos + diárias + outros auxílios e vantagens**.
 
 ```{r plot_deputados_acima_teto, echo=FALSE}
 title <- paste("Deputados que Ultrapassaram o Teto em ", ano_max)
@@ -100,7 +100,7 @@ q
 
 ### Servidores em geral
   
-Mas ultrapassar o teto não é exclusividade dos deputados. No gráfico abaixo, mostramos os dez servidores (não necessariamente deputados) que mais receberam acima do teto constitucional entre `r ano_min` e `r ano_max`.
+Ultrapassar o teto não é exclusividade dos deputados. No gráfico abaixo, mostramos os dez servidores (incluindo deputados) que mais receberam acima do teto constitucional entre `r ano_min` e `r ano_max`. O campeão de utrapassagem do teto é o deuptado Wladimir Afonso da Costa Rabelo que teve seu nome noticiado recentemnte por ter feito uma tatuagem no ombro em homenagem ao Presidente Michel Temer. 
 
 ```{r plot_servidores_acima_teto, echo=FALSE}
 title2 <- paste("Servidores que mais Ultrapassaram o Teto entre", ano_min, "e", ano_max)
@@ -116,7 +116,9 @@ hc
 ```
 
 
-Informações adicionais (acessado em 02 de agosto de 2017):
+Informações adicionais (acessado em 07 de agosto de 2017):
   
 [Para STF, servidores podem superar teto com acúmulo de cargo](http://www1.folha.uol.com.br/poder/2017/04/1879189-para-stf-servidores-podem-superar-teto-com-acumulo-de-cargo.shtml)
+
+[Matéria sobre o deputado Wladimir Costa](http://exame.abril.com.br/brasil/wladimir-costa-o-tatuado-simbolico/)
   
