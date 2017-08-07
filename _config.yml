@@ -1,7 +1,7 @@
 # Site settings
 title: QuebraQuebra
 description: > # this means to ignore newlines until "baseurl:"
-baseurl: "/blog" # the subpath of your site, e.g. /blog/
+baseurl: "/blog/" # the subpath of your site, e.g. /blog/
 url: "http://quebraquebra.lsd.ufcg.edu.br" # the base hostname & protocol for your site
 github_username:  quebraquebra
 permalink: /:year/:month/:title.html
