@@ -39,11 +39,11 @@ O Senado Federal é composto por 81 Senadores: três para cada um dos 26 estados
 
 [Fontes (acessadas em 05/08/2017)]: [Site do Senado](https://www12.senado.leg.br/transparencia/laipergunta).
 
-Aparentemente, com raras exceções, a remuneração de todos os categorias vem aumentando ao longo do tempo. Valendo ressaltar que os dados de 2017 só vão até junho, porém, os valores da remunerações, em sua grande maioria, já passam da metade do  mesmo valor no mês de junho de 2016.
+Aparentemente, com raras exceções, a remuneração de todas os categorias vem aumentando ao longo do tempo. Valendo ressaltar que os dados de 2017 só vão até junho.
 
 ### **Câmara dos Deputados**
 
-As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos.
+As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos. No gráficos abaixo, os eixos x e y representam anos e as remunerações somadas para todos os servidores de uma dada categoria respectivamente, enquanto que o tamanho da bola denota a quantidade de servidores desta categoria. 
 
 * **Cargo**
 
