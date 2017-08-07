@@ -3,7 +3,7 @@
 ## Dependências
 ### Backend
 
-Esse blog de análises usa o [R (>3.3)](https://cran.r-project.org/) para a geração das análises (via Rmarkdown) e [jekyll](https://jekyllrb.com/) para converter os arquivos markdown em HTML. 
+Esse blog usa o [R (>3.3)](https://cran.r-project.org/) para a geração das análises (via Rmarkdown) e [jekyll](https://jekyllrb.com/) para converter os arquivos markdown em HTML. 
 
 Todos os pacotes necessários serão instalados assim que você abrir o projeto pela primeira vez (o 'packrat' vai cuidar disso).
 
