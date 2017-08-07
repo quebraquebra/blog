@@ -19,6 +19,7 @@ library(rCharts)
 library(readr)
 library(reshape2)
 require(scales)
+
 ```
 
 ```{r pre_processing, include=FALSE}
@@ -43,7 +44,7 @@ Aparentemente, com raras exceções, a remuneração de todas os categorias vem 
 
 ### **Câmara dos Deputados**
 
-As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos. No gráficos abaixo, os eixos x e y representam anos e as remunerações somadas para todos os servidores de uma dada categoria respectivamente, enquanto que o tamanho da bola denota a quantidade de servidores desta categoria. 
+As categorias da Câmara apresentam considerável crescimento de remuneração quando se olha para a curva crescente nos gráficos. No gráficos abaixo os eixos x e y representam os anos e as remunerações somadas para todos os servidores de uma dada categoria respectivamente, enquanto que o tamanho da bola denota a quantidade de servidores desta categoria. 
 
 * **Cargo**
 
@@ -51,8 +52,8 @@ As categorias da Câmara apresentam considerável crescimento de remuneração q
 p_qr_camara_cargo <- hchart(qc_camara_cargo, type = "bubble", hcaes(x = d, y = kincaid, group=name, size=avg_kincaid)) %>%
   hc_xAxis(title = list(text = "Cargos")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
-  #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
+  #hc_tooltip(pointFormat = "Valor: {point.y:2.f} <br> Data: {point.d}")
+  hc_tooltip(pointFormat = "Valor: {point.y:.2f} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_camara_cargo
 ```
 
@@ -63,7 +64,7 @@ p_qr_camara_vinculo <- hchart(qc_camara_vinculo, type = "bubble", hcaes(x = d, y
   hc_xAxis(title = list(text = "Vínculo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y:.2f} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_camara_vinculo
 
 ```
@@ -79,7 +80,7 @@ p_qr_senado_cargo <- hchart(qc_senado_cargo, type = "bubble", hcaes(x = d, y = k
   hc_xAxis(title = list(text = "Cargo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y:.2f} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_cargo
 ```
 
@@ -90,7 +91,7 @@ p_qr_senado_vinculo <- hchart(qc_senado_vinculo, type = "bubble", hcaes(x = d, y
   hc_xAxis(title = list(text = "Vínculo")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y:.2f} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_vinculo
 ```
 
@@ -101,6 +102,6 @@ p_qr_senado_especialidade <- hchart(qc_senado_especialidade, type = "bubble", hc
   hc_xAxis(title = list(text = "Especialidade")) %>%
   hc_yAxis(title = list(text = "Valor da Remuneração (milhões R$)")) %>%
   #hc_tooltip(pointFormat = "Valor: {point.y} <br> Data: {point.d}")
-  hc_tooltip(pointFormat = "Valor: {point.y} <br> Quantidade de servidores: {point.avg_kincaid}")
+  hc_tooltip(pointFormat = "Valor: {point.y:.2f} <br> Quantidade de servidores: {point.avg_kincaid}")
 p_qr_senado_especialidade
 ```
