@@ -1,5 +1,5 @@
 ---
-title: "Categorias mais bem remunerados da Câmara e do Senado"
+title: "Categorias mais bem remunerados da Câmara/Senado"
 published: yes
 tags:
 - remuneracao
@@ -38,8 +38,6 @@ qc_senado_vinculo <- read_csv(file="../../_data/08-mais-remunerados/qc_senado_vi
 options(scipen=2000, OutDec= ",")
 ```
 
-## Remuneração
-
 No Brasil, o Poder Legislativo é organizado na modalidade bicameral, ou seja, é constituído de duas câmaras: a dos Deputados e o Senado Federal. Juntas, as duas Casas compõem o Congresso Nacional e têm funções específicas, discriminadas na Constituição Federal. A principal delas é a elaboração, o debate e a aprovação de leis.
 
 Senado Federal e Câmara dos Deputados também têm competências distintas. Por exemplo: enquanto o primeiro tem, entre as suas atribuições privativas, a missão de aprovar a designação de embaixadores, de magistrados e de titulares de outros cargos previstos na Constituição, a segunda tem a primazia sobre a discussão de projetos originados no Executivo.
@@ -54,7 +52,7 @@ O Senado Federal é composto por 81 Senadores: três para cada um dos 26 estados
 
 Além dos 513 deputados, existem outros cargos que podem ser encontrados na Câmara. Que são principalmente relacionados a elaboração de leis.
 
-Desses cargos, o Analista Legislativo é o que acumula a maior remuneração desde 2013, com **2 bilhões**. Já o menor é o Cargo de Comissão: 1 milhão. 
+Desses cargos, o Analista Legislativo é o que representa o maior vamor acumulado de pagamento de remunerações desde 2013, com **R$ 2 bilhões**. Já o menor é o Cargo de Comissão: com R$ 1 milhão. 
 
 ```{r mr_camara_cargo, echo=FALSE}
 p_mr_camara_cargo <- hchart(mr_camara_cargo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
@@ -65,7 +63,7 @@ p_mr_camara_cargo
 
 * **Vínculo**
 
-Tanto como os cargos, há outros tipos de vinculação à Câmara, como os funcionários inativos. Que neste caso representão um custo de remunerção de quase **3 milhões**.
+Assim como os cargos, há outros tipos de vinculação à Câmara, como os funcionários inativos. Que neste caso representam um custo acumulado de remunerção de quase **R$ 3 milhões** desde 2013.
 
 ```{r mr_camara_vinculo, echo=FALSE}
 p_mr_camara_vinculo <- hchart(mr_camara_vinculo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
@@ -78,7 +76,7 @@ p_mr_camara_vinculo
 
 * **Cargo**
 
-No Senado, o número total de funcionários chega a marca de 10000. O cargo de Analista legislativo é, novamente, o com maior remuneração. Desta vez com **3,3 bilhões**.
+No Senado, o número total de funcionários chega a marca de 10.000. O cargo de Analista Legislativo é, novamente, o cargo com maior valor acumulado de remunerações pagas. Desta vez com **R$ 3,3 bilhões**.
 ```{r mr_senado_cargo, echo=FALSE}
 p_mr_senado_cargo <- hchart(mr_senado_cargo, type = "bar", hcaes(x = area, y = value, group=area)) %>%
   hc_xAxis(title = list(text = "Cargos")) %>%
@@ -99,7 +97,7 @@ p_mr_senado_vinculo
 
 * **Especialidade**
 
-Já as especialidades são as mais variadas com, porém, a área legislativa se destaca novamente com Processo Legislativo sendo a especialidade mais bem remunerada: acumulo de quase **2 bilhões**.
+Já as especialidades são as mais variadas. A área legislativa se destaca novamente com Processo Legislativo sendo a especialidade com o maior valor acumulado de remunerações pagas: quase **R$ 2 bilhões**.
 
 ```{r mr_senado_especialidade, echo=FALSE}
 p_mr_senado_vinculo <- hchart(mr_senado_especialidade, type = "bar", hcaes(x = area, y = value, group=area)) %>%
