@@ -13,6 +13,8 @@ Todos os pacotes necessários serão instalados assim que você abrir o projeto 
 
 Servir localmente via *RStudio*
 
+> devtools::install_github("brendan-R/brocks") (caso o pacote brocks ainda não esteja instalado)
+
 > brocks::blog_serve()
 
 Servir localmente via *Linha de Comando*
