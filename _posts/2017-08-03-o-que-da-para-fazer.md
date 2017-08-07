@@ -17,7 +17,7 @@ layout: post
 
 
 
-Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  2016, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear 3.3015 &times; 10<sup>4</sup> alunos de doutorado com bolsa CAPES (R$ 2.200,00) por 687 anos, de acordo com os dados coletados do site da transparência da Câmara.
+Para se ter noção dos elevados salários dos deputados, se considerarmos a remuneração líquida de todos eles em  2016, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear 687 alunos de doutorado com bolsa CAPES (R$ 2.200,00) por quatro anos, de acordo com os dados coletados do site da transparência da Câmara.
 
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/capes-1.png)
 
@@ -32,7 +32,7 @@ Informação complementar:
 
 
 
-A licença-prêmio é um antigo direito garantido por lei que ainda benecifia diversos servidores do Senado. Para se ter uma ideia, somente em 2017, os dez servidores mais beneficiados pela Licença-prêmio daria para adquirir 27 ambulâncias.
+A licença-prêmio foi um antigo direito garantido por lei que ainda benecifia diversos servidores. Para se ter uma ideia, somente em 2017, os dez servidores mais beneficiados pela Licença-prêmio no Senado, daria para adquirir 27 ambulâncias. Nesse caso, os valores de Licença-prêmio utilizados nessa equação foram os valores brutos (isto é, sem os descontos).
 
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/samu-1.png)
 
@@ -43,7 +43,13 @@ Informação complementar:
 [Sindilegis solicita ao Senado e TCU conversão da licença-prêmio não usufruída em pecúnia (acessado em 7 de agosto de 2017)](https://sindilegis.org.br/noticias/sindilegis-solicita-ao-senado-e-tcu-conversao-da-licenaa-pramio-nao-usufrua-da-em-pecania/388)
 
 
+
+
 * **O que um deputado tem a ver com empregado(as) domésticos(as)?**
+
+
+
+Para se ter uma ideia das elevadas remunerações dos servidores da Câmara, o deputado com maior remuneração em  2016 foi  WLADIMIR AFONSO DA COSTA RABELO, totalizando R$ 4.0910131 &times; 10<sup>5</sup> mil. Isso corresponde a contribuição de 284 empregados(as) domésticos(as) ao INSS por um ano! Em nossos cálculos, utilizamos R$ 120 como valor de contribuição por empregado, tendo como base um salário de R$ 1.500,00 e 8% de contribuição ao imposto de renda.
 
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/empregado-1.png)
 
@@ -56,6 +62,9 @@ Informação complementar:
 
 * **Quantos hospitais dariam para construir?**
 
+
+Para se ter uma ideia do montante pago em salários na Câmara e no Senado em 2016, já com os descontos de imposto de renda, daria para construir 8 hospitais equipados com: 400 leitos, sendo 50 Unidades de Tratamento Intensivo (UTI), 30 semi-intensivos, 10 UTIs Pediátricas, 10 UTIs neonatais, 15 Unidades de Cuidados Intensivos Neonatais (Ucin), 40 de maternidade, 125 de enfermaria e 120 de retaguarda. Nessa análise, consideramos o custo de construir um hospital com essa estrutura por R$ 287 MILHÕES, visto que, a construção do Hospital Geral de Cariacica com essa mesma estrutura custou R$ 270 milhões em 2016. Considerando a inflação de 6,29% em 2016, temos o valor de referência para construção de um hospital nesses mesmos parâmetros em 2017 por R$ 287.
+
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/hospital-1.png)
 
 Informação complementar:
@@ -66,7 +75,18 @@ Informação complementar:
 
 
 
+
+
 * **Qual a vazão de pagamento da Câmara e do Senado por segundo?**
+
+
+
+Você tem idiea de quanto o contribuinte tem que desenbolsar a cada **segundo** para manter a remuneração de todos os servidores da Câmara e do Senado? Exatos R$ 81.2 por segundo! Pode parecer pouco, mas por dia chega a R$ 7 MILHÕES! Em 2016, foram R$ 2.6 BILHÕES, isso já descontando de impostos e sem considerar todos os servidores, pois não foi possível localizar no portal da transparência do Senado, os valores de remuneração dos senadores.
+
+
+{% highlight text %}
+## Error in paste(texto, "\nR$", gastos_minuto, "MIL por minuto!"): objeto 'gastos_minuto' não encontrado
+{% endhighlight %}
 
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/brasilia-1.png)
 
@@ -75,6 +95,9 @@ Informação complementar:
 
 
 * **A folha de pagamento do Senado para aposentados é mesmo alta?**
+
+
+Recentemente noticiou a milionária contratação do jogador de futebol Neymar, surpreendendo várias pessoas pelo enorme salário anual de aproxidamente R$ 110 milhões. Entretanto, esse valor parece pequeno quando comparado ao pagamento do Senado aos aposentados, considerando a folha de pagamento de 2016, só o que foi pago a aposentados daria para contratar o Neymar por 3 anos! Ou seja, o Senado efetuou o pagamento de R$ 1.0692086 &times; 10<sup>9</sup> MILHÕES em 2016 para aposentados.
 
 ![](/blogfigure/source/09-o-que-da-para-fazer/2017-08-03-o-que-da-para-fazer/neymar-1.png)
 
