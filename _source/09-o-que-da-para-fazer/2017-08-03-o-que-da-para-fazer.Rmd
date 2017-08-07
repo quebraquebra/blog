@@ -105,14 +105,20 @@ gasto_do_senado_e_camara_ano_anterior <-sum(todos_servidores_ano_anterior_c$remu
 
 * **Quanto vale a remuneração dos deputados?**
 
+```{r, echo=FALSE}
+custo <- 2200
+```
+
+Considerando a remuneração líquida de todos os deputados em  `r ano_max_c-1`, isto é, a remuneração já descontada do imposto de renda, seria o suficiente para custear `r floor(remuneracao_deputados_recente/custo)` alunos de doutorado com bolsa CAPES (R$ 2.200,00) por `r floor(remuneracao_deputados_recente/(custo*48))` anos.
+
 ```{r capes, echo=FALSE}
 frink <- image_read("../../_data/imagens/capes.jpg")
-custo <- 2200
 texto <- paste("A REMUNERAÇÃO DE TODOS OS\nDEPUTADOS EM", ano_max_c, "SERIA O\nSUFICIENTE PARA PAGAR", floor(remuneracao_deputados_recente/(custo*48)), "ALUNOS\nDE DOUTORADO POR 4 ANOS!")
 image <- image_annotate(frink, texto, size = 30, location="+0+85", gravity = "center", strokecolor="black", color = "white", font='../../_data/fontes/Impact.ttf')
 plot(image)
 ```
 
+[Valores de Bolsas](http://www.capes.gov.br/bolsas/valores-de-bolsas)
 
 * **Quanto vale a Licença-Prêmio de apenas dez servidores?**
 

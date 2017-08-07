@@ -96,7 +96,7 @@ p_qr_senado_vinculo
 
 * **Especialidade**
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 #pegando top 5
 qc_senado_especialidade_top5 <- qc_senado_especialidade %>%
   group_by(d) %>%
