@@ -1,3 +1,0 @@
-[0805/003049.536:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\Junemike\Reports\Dump: The system cannot find the path specified. (0x3)
-[0805/003049.590:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: The pipe has been ended. (0x6D)
-[0805/003049.591:ERROR:crash_report_database_win.cc(568)] CreateDirectory C:\Program Files (x86)\Junemike\Reports\Dump: The system cannot find the path specified. (0x3)
