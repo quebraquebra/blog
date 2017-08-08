@@ -1,5 +1,7 @@
 # Análise de Dados da Folha da Câmara e Senado
 
+Este repositório contém as análises de dados feitas em cima dos dados coletados. A ideia é apresentar essas análises em forma de um blog de forma que novas análises possam ser facilmente incorporadas no futuro. Todas as análises foram feitas em R.
+
 ## Dependências
 ### Backend
 
