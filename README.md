@@ -42,7 +42,7 @@ Para compilar o blog com as análises que desenvolvemos, baixe o arquivo .zip co
 
 Para incluir novas análises:
 1. Crie uma pasta dentro do diretório \_source/ com o nome da análise.
-2. Crie um arquivo .Rmd começando com a data no formato (aaa-mm-dd) (veja os exemplos atuais).
+2. Crie um arquivo .Rmd começando com a data no formato (aaaa-mm-dd) (veja os exemplos atuais).
 3. Faça o build com `brocks::gen()`
 4. Para servir localmente use `brocks::blog_serve()`
 5. Para servir via github basta fazer commit e push no repositório
