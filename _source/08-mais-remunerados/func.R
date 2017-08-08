@@ -49,7 +49,7 @@ geraJsonQC <- function(coluna, tipo){
   json_data <- toJSON(df2, pretty = T)
 
   #qc = quanto custa
-  write(json_data, paste(paste("../../_data/08-mais-remunerados/qc_", paste(tipo,coluna,sep = "_"), sep = ""), ".json", sep = ""))
+  write(json_data, paste(paste("_data/08-mais-remunerados/qc_", paste(tipo,coluna,sep = "_"), sep = ""), ".json", sep = ""))
   rem_coluna <- rem_coluna %>%
     filter(name != "NaN")
   geraCsvQR(coluna, tipo, rem_coluna)
@@ -86,7 +86,7 @@ geraJsonMR <- function(coluna, tipo){
   json_data <- toJSON(rem_coluna, pretty = T)
 
   #mr = mais rico
-  write(json_data, paste(paste("../../_data/08-mais-remunerados/mr_", paste(tipo,coluna,sep = "_"), sep = ""), ".json", sep = ""))
+  write(json_data, paste(paste("_data/08-mais-remunerados/mr_", paste(tipo,coluna,sep = "_"), sep = ""), ".json", sep = ""))
 
   rem_coluna <- rem_coluna %>%
     filter(area != "NaN")
@@ -99,13 +99,13 @@ geraJsonMR <- function(coluna, tipo){
 geraCsvMR <- function(coluna, tipo, rem_coluna){
 
   #mr = mais rico
-  write.table(x=rem_coluna, file=paste(paste("../../_data/08-mais-remunerados/mr_", paste(tipo,coluna,sep = "_"), sep = ""), "csv", sep = "."), sep = ",", quote = T, fileEncoding = "UTF-8", row.names=FALSE)
+  write.table(x=rem_coluna, file=paste(paste("_data/08-mais-remunerados/mr_", paste(tipo,coluna,sep = "_"), sep = ""), "csv", sep = "."), sep = ",", quote = T, fileEncoding = "UTF-8", row.names=FALSE)
 
 }
 
 geraCsvQR <- function(coluna, tipo, rem_coluna){
 
   #mr = mais rico
-  write.table(x=rem_coluna, file=paste(paste("../../_data/08-mais-remunerados/qc_", paste(tipo,coluna,sep = "_"), sep = ""), "csv", sep = "."), sep = ",", quote = T, fileEncoding = "UTF-8", row.names=FALSE)
+  write.table(x=rem_coluna, file=paste(paste("_data/08-mais-remunerados/qc_", paste(tipo,coluna,sep = "_"), sep = ""), "csv", sep = "."), sep = ",", quote = T, fileEncoding = "UTF-8", row.names=FALSE)
 
 }

@@ -1,7 +1,6 @@
-source("load.R")
-source("clean.R")
-source("func.R")
-
+source("_source/08-mais-remunerados/load.R")
+source("_source/08-mais-remunerados/clean.R")
+source("_source/08-mais-remunerados/func.R")
 ##################################
 ##gerando dados pro quanto custa##
 ##################################

@@ -438,32 +438,6 @@
     ]
   },
   {
-    "name": "DIRETOR-EXECUTIVO",
-    "avg_kincaid": 12,
-    "speeches": [
-      {
-        "d": "2013-01-01",
-        "kincaid": 0.3045
-      },
-      {
-        "d": "2014-01-01",
-        "kincaid": 0.2918
-      },
-      {
-        "d": "2015-01-01",
-        "kincaid": 0.2953
-      },
-      {
-        "d": "2016-01-01",
-        "kincaid": 0.3207
-      },
-      {
-        "d": "2017-01-01",
-        "kincaid": 0.176
-      }
-    ]
-  },
-  {
     "name": "DIRETOR DE SECRETARIA",
     "avg_kincaid": 24,
     "speeches": [
@@ -486,6 +460,32 @@
       {
         "d": "2017-01-01",
         "kincaid": 0.3452
+      }
+    ]
+  },
+  {
+    "name": "DIRETOR-EXECUTIVO",
+    "avg_kincaid": 12,
+    "speeches": [
+      {
+        "d": "2013-01-01",
+        "kincaid": 0.3045
+      },
+      {
+        "d": "2014-01-01",
+        "kincaid": 0.2918
+      },
+      {
+        "d": "2015-01-01",
+        "kincaid": 0.2953
+      },
+      {
+        "d": "2016-01-01",
+        "kincaid": 0.3207
+      },
+      {
+        "d": "2017-01-01",
+        "kincaid": 0.176
       }
     ]
   },
@@ -2150,32 +2150,6 @@
     ]
   },
   {
-    "name": "DIRETOR-EXECUTIVO",
-    "avg_kincaid": 11,
-    "speeches": [
-      {
-        "d": "2013-01-01",
-        "kincaid": 0.3045
-      },
-      {
-        "d": "2014-01-01",
-        "kincaid": 0.2918
-      },
-      {
-        "d": "2015-01-01",
-        "kincaid": 0.2953
-      },
-      {
-        "d": "2016-01-01",
-        "kincaid": 0.3207
-      },
-      {
-        "d": "2017-01-01",
-        "kincaid": 0.176
-      }
-    ]
-  },
-  {
     "name": "DIRETOR DE SECRETARIA",
     "avg_kincaid": 22,
     "speeches": [
@@ -2198,6 +2172,32 @@
       {
         "d": "2017-01-01",
         "kincaid": 0.3452
+      }
+    ]
+  },
+  {
+    "name": "DIRETOR-EXECUTIVO",
+    "avg_kincaid": 11,
+    "speeches": [
+      {
+        "d": "2013-01-01",
+        "kincaid": 0.3045
+      },
+      {
+        "d": "2014-01-01",
+        "kincaid": 0.2918
+      },
+      {
+        "d": "2015-01-01",
+        "kincaid": 0.2953
+      },
+      {
+        "d": "2016-01-01",
+        "kincaid": 0.3207
+      },
+      {
+        "d": "2017-01-01",
+        "kincaid": 0.176
       }
     ]
   },
@@ -3810,32 +3810,6 @@
     ]
   },
   {
-    "name": "DIRETOR-EXECUTIVO",
-    "avg_kincaid": 6,
-    "speeches": [
-      {
-        "d": "2013-01-01",
-        "kincaid": 0.3045
-      },
-      {
-        "d": "2014-01-01",
-        "kincaid": 0.2918
-      },
-      {
-        "d": "2015-01-01",
-        "kincaid": 0.2953
-      },
-      {
-        "d": "2016-01-01",
-        "kincaid": 0.3207
-      },
-      {
-        "d": "2017-01-01",
-        "kincaid": 0.176
-      }
-    ]
-  },
-  {
     "name": "DIRETOR DE SECRETARIA",
     "avg_kincaid": 12,
     "speeches": [
@@ -3858,6 +3832,32 @@
       {
         "d": "2017-01-01",
         "kincaid": 0.3452
+      }
+    ]
+  },
+  {
+    "name": "DIRETOR-EXECUTIVO",
+    "avg_kincaid": 6,
+    "speeches": [
+      {
+        "d": "2013-01-01",
+        "kincaid": 0.3045
+      },
+      {
+        "d": "2014-01-01",
+        "kincaid": 0.2918
+      },
+      {
+        "d": "2015-01-01",
+        "kincaid": 0.2953
+      },
+      {
+        "d": "2016-01-01",
+        "kincaid": 0.3207
+      },
+      {
+        "d": "2017-01-01",
+        "kincaid": 0.176
       }
     ]
   },
