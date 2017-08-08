@@ -36,7 +36,7 @@ Servir localmente via *Linha de Comando*
 
 ### Dados
 
-Para compilar o projeto atual, baixe o arquivo .zip contento os dados usados no projetos [neste link](https://drive.google.com/open?id=0B96DYGN6XyX7NE9vRDRkRGs0MXM) e os descompate na pasta raiz do projeto. Os arquivos dados_senado.csv e camara.txt contém os dados completos das folhas de pagamento da Câmara (desde 2013) e Senado (desde 2012) respectivamente. Embora as análises aqui postadas usem dados acessados localmente, os dados também podem ser acessados remotamente pela [API desenvolvida pela equipe do QuebraQuebra](http://api.quebraquebra.lsd.ufcg.edu.br/). 
+Para compilar o blog com as análises que desenvolvemos, baixe o arquivo .zip contento os dados da Câmara/Senado que coletamos [neste link](https://drive.google.com/open?id=0B96DYGN6XyX7dFhsWjdYQU9TcVU) e os descompate na pasta \_data. Os arquivos dados_senado.csv e camara.txt contém os dados completos das folhas de pagamento da Câmara (desde 2013) e Senado (desde 2012) respectivamente. Embora as análises aqui postadas usem dados acessados localmente, os dados também podem ser acessados remotamente pela [API desenvolvida pela equipe do QuebraQuebra](http://api.quebraquebra.lsd.ufcg.edu.br/). 
 
 ### Incluindo novas análises
 
